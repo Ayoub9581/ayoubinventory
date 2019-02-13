@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+	{% load staticfiles %}
+{% block content %}
+{% include 'base/sidebar.html' with category=instance.category %}
+<div class='col-md-9'>
+	<div id="category" class="category-carousel hidden-xs">
+		<div class="item">
+			<div class="image"> <img src="{% static 'assets/images/banners/10.png' %}" alt="" class="img-responsive"> </div>
+			<div class="container-fluid">
+				<div class="caption vertical-top text-left">
+					<div class="big-text"> {{instance.category}} </div>
+					<div class="excerpt hidden-sm hidden-md">
+						<p>Deal Of The Week
+					</div>
+					<div class="excerpt-normal hidden-sm hidden-md"> Up to 20$ OFF selected Appel iPhones </div>
+				</div>
+				<!-- /.caption -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+	</div>
+
+	<div class="clearfix filters-container m-t-10">
+		<div class="row">
+			<div class="col col-sm-6 col-md-2">
+				<div class="filter-tabs">
+					<ul id="filter-tabs" class="nav nav-tabs nav-tab-box nav-tab-fa-icon">
+						<li class="active"> <a data-toggle="tab" href="#grid-container"><i class="icon fa fa-th-large"></i>Grid</a> </li>
+						<li><a data-toggle="tab" href="#list-container"><i class="icon fa fa-th-list"></i>List</a></li>
+					</ul>
+				</div>
+				<!-- /.filter-tabs -->
+			</div>
+			<!-- /.col -->
+			<div class="col col-sm-12 col-md-6">
+
+				<!-- /.col -->
+				<div class="col col-sm-3 col-md-6 no-padding">
+
+					<!-- /.lbl-cnt -->
+				</div>
+				<!-- /.col -->
+			</div>
+
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+
+
+	<div class="search-result-container ">
+		<div id="myTabContent" class="tab-content category-list">
+			<div class="tab-pane active " id="grid-container">
+				<div class="category-product">
+					<div class="row">
+
+						{% for ins in instance.product_set.all %}
+						{% include 'products/snippets/card.html' with instance=ins %}
+
+						{% empty %}
+							there are no products for this category <b>{{instance}}</b>
+						{% endfor %}
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- <div class="row">
+			{% if listings.has_other_pages %}
+			<ul class="pagination">
+				{% if listings.has_previous %}
+				<li class="page-item">
+					<a class="page-link" href="?page={{listings.previous_page_number}}" tabindex="-1">&laquo;</a>
+				</li>
+				{% else %}
+				<li class="page-item disabled">
+					<a class="page-link" tabindex="-1">&laquo;</a>
+				</li>
+				{% endif %}
+
+				{% for i in listings.paginator.page_range %}
+				{% if listings.number == i %}
+				<li class="page-item active">
+					<a class="page-link">{{i}}</a>
+				</li> {% else %}
+				<li class="page-item">
+					<a class="page-link" href="?page={{i}}" tabindex="-1">{{i}}</a>
+				</li>
+				{% endif %}
+				{% endfor %}
+
+				{% if listings.has_next %}
+				<li class="page-item">
+					<a class="page-link" href="?page={{listings.next_page_number}}" tabindex="-1">&raquo; </a>
+				</li>
+				{% else %}
+				<li class="page-item disabled">
+					<a class="page-link" tabindex="-1">&laquo;</a>
+				</li>
+				{% endif %}
+
+
+			</ul>
+			{% endif %}
+		</div> -->
+
+	</div>
+
+{% endblock %}

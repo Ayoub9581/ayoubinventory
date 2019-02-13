@@ -1,0 +1,331 @@
+[{
+	"model": "products.product",
+	"pk": 1,
+	"fields": {
+		"title": "Iphone X",
+		"slug": "iphone-x",
+		"description": "iphone X",
+		"price": "400.00",
+		"image": "products/3436061832/3436061832.jpg",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-06T19:19:59.242Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 2,
+	"fields": {
+		"title": "samsung",
+		"slug": "samsung",
+		"description": "yes",
+		"price": "10.99",
+		"image": "products/210778124/210778124.jpg",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-07T14:59:27.347Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 3,
+	"fields": {
+		"title": "Appel Mac pro",
+		"slug": "appel-mac-pro",
+		"description": "Mac",
+		"price": "3000.00",
+		"image": "products/1619570999/1619570999.jpg",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T11:17:38.886Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 4,
+	"fields": {
+		"title": "Smart Watch Appel",
+		"slug": "smart-watch-appel",
+		"description": "Smart Watch",
+		"price": "400.99",
+		"image": "products/342950807/342950807.jpg",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T11:18:32.761Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 5,
+	"fields": {
+		"title": "Iphone 5S",
+		"slug": "iphone-5s",
+		"description": "Iphone 5S",
+		"price": "39.99",
+		"image": "products/367226324/367226324.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:07:18.205Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 6,
+	"fields": {
+		"title": "Iphone 6S",
+		"slug": "iphone-6s",
+		"description": "Iphone 6s",
+		"price": "39.99",
+		"image": "products/1026286618/1026286618.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:07:39.868Z",
+		"is_digital": false,
+		"sub_category": 1,
+		"category": 1
+	}
+}, {
+	"model": "products.product",
+	"pk": 7,
+	"fields": {
+		"title": "Samsung G7",
+		"slug": "samsung-g7",
+		"description": "Samsung G7",
+		"price": "39.99",
+		"image": "products/3058864061/3058864061.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:07:58.755Z",
+		"is_digital": false,
+		"sub_category": 4,
+		"category": 1
+	}
+}, {
+	"model": "products.product",
+	"pk": 8,
+	"fields": {
+		"title": "IPad 2018",
+		"slug": "ipad-2018",
+		"description": "IPad 2018",
+		"price": "39.99",
+		"image": "products/2034588303/2034588303.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:08:39.662Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 9,
+	"fields": {
+		"title": "IPad Luxe",
+		"slug": "ipad-luxe",
+		"description": "IPad Luxe",
+		"price": "39.99",
+		"image": "products/26799202/26799202.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:08:54.229Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 10,
+	"fields": {
+		"title": "iPad Mini",
+		"slug": "ipad-mini",
+		"description": "iPad Mini",
+		"price": "39.99",
+		"image": "products/156499323/156499323.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:09:13.966Z",
+		"is_digital": false,
+		"sub_category": null,
+		"category": null
+	}
+}, {
+	"model": "products.product",
+	"pk": 11,
+	"fields": {
+		"title": "Samung tablette",
+		"slug": "samung-tablette",
+		"description": "iPad Mini",
+		"price": "39.99",
+		"image": "products/1255878744/1255878744.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:09:34.396Z",
+		"is_digital": false,
+		"sub_category": 14,
+		"category": 1
+	}
+}, {
+	"model": "products.product",
+	"pk": 12,
+	"fields": {
+		"title": "Rolex Watch",
+		"slug": "rolex-watch",
+		"description": "Rolex Watch",
+		"price": "39.99",
+		"image": "products/1541665823/1541665823.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:10:40.449Z",
+		"is_digital": false,
+		"sub_category": 13,
+		"category": 2
+	}
+}, {
+	"model": "products.product",
+	"pk": 13,
+	"fields": {
+		"title": "Oxygen Watch",
+		"slug": "oxygen-watch",
+		"description": "Oxygen Watch",
+		"price": "39.99",
+		"image": "products/155676103/155676103.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:10:57.340Z",
+		"is_digital": false,
+		"sub_category": 13,
+		"category": 2
+	}
+}, {
+	"model": "products.product",
+	"pk": 14,
+	"fields": {
+		"title": "Rolex Luxe 2019",
+		"slug": "rolex-luxe-2019",
+		"description": "Rolex Luxe 2019",
+		"price": "39.99",
+		"image": "products/1868531820/1868531820.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:11:20.112Z",
+		"is_digital": false,
+		"sub_category": 13,
+		"category": 2
+	}
+}, {
+	"model": "products.product",
+	"pk": 15,
+	"fields": {
+		"title": "Swatch Watch",
+		"slug": "swatch-watch",
+		"description": "Swatch Watch",
+		"price": "39.99",
+		"image": "products/3020761962/3020761962.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:11:36.083Z",
+		"is_digital": false,
+		"sub_category": 13,
+		"category": 2
+	}
+}, {
+	"model": "products.product",
+	"pk": 16,
+	"fields": {
+		"title": "Mac Pro 2019",
+		"slug": "mac-pro-2019",
+		"description": "Mac Pro 2019",
+		"price": "39.99",
+		"image": "products/2715370886/2715370886.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:12:02.948Z",
+		"is_digital": false,
+		"sub_category": 12,
+		"category": 5
+	}
+}, {
+	"model": "products.product",
+	"pk": 17,
+	"fields": {
+		"title": "Android laptop",
+		"slug": "android-laptop",
+		"description": "Android laptop",
+		"price": "39.99",
+		"image": "products/2059721769/2059721769.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:12:26.504Z",
+		"is_digital": false,
+		"sub_category": 12,
+		"category": 5
+	}
+}, {
+	"model": "products.product",
+	"pk": 18,
+	"fields": {
+		"title": "IMAC AIR 24",
+		"slug": "imac-air-24",
+		"description": "IMAC AIR 24 GB",
+		"price": "39.99",
+		"image": "products/3205438411/3205438411.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:12:54.627Z",
+		"is_digital": false,
+		"sub_category": 12,
+		"category": 5
+	}
+}, {
+	"model": "products.product",
+	"pk": 19,
+	"fields": {
+		"title": "IMAC AIR 24",
+		"slug": "imac-air-24-d311",
+		"description": "IMAC AIR 24 version 2.0",
+		"price": "39.99",
+		"image": "products/1185495114/1185495114.png",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-08T16:45:41.019Z",
+		"is_digital": false,
+		"sub_category": 12,
+		"category": 5
+	}
+}, {
+	"model": "products.product",
+	"pk": 24,
+	"fields": {
+		"title": "album xxtentacion",
+		"slug": "album-xxtentacion",
+		"description": "album xxtentacion",
+		"price": "39.99",
+		"image": "products/2618461459/2618461459.jpg",
+		"featured": false,
+		"active": true,
+		"timestamp": "2019-02-10T15:25:27.284Z",
+		"is_digital": true,
+		"sub_category": 11,
+		"category": 4
+	}
+}, {
+	"model": "products.productfile",
+	"pk": 1,
+	"fields": {
+		"product": 24,
+		"name": "love you",
+		"file": "product/album-xxtentacion/0/12_love_yourself_interlude.m4a",
+		"free": false,
+		"user_required": true
+	}
+}]

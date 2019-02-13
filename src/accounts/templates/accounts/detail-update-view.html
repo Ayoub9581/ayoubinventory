@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="contact-page">
+	<div class="row">
+
+		<div class="col-md-9 contact-form">
+			<form class="register-form" method='POST' action=''> {% csrf_token %}
+				{% if next_url %}
+				<input type='hidden' name='next' value='{{ next_url }}' />
+				{% endif %}
+				<div class="">
+					{% if title %}{{ title }}{% endif %}
+				</div>
+
+				<div class="col-md-4 ">
+					<div class="form-group">
+						<!-- <label class="info-title" for="exampleInputName">Full name <span>*</span></label> -->
+						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
+						{{form.as_p}}
+					</div>
+				</div>
+
+				<div class="col-md-4 ">
+					<div class="form-group">
+						<label class="info-title" for="exampleInputName">Cannot Change Email</label>
+						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
+						<input type='text' id='email' class='form-control unicase-form-control' value='{{ request.user.email }}' disabled="disabled" />
+						<!-- <span class='help-text'>Cannot change email</span><br /> -->
+					</div>
+				</div>
+
+				<div class="col-md-4 ">
+					<div class="form-group">
+						<label class="info-title" for="exampleInputName">Cannot Change Email</label>
+						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
+						<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Save changes</button>
+						<!-- <span class='help-text'>Cannot change email</span><br /> -->
+					</div>
+				</div>
+
+				<div class="col-md-4 ">
+					<div class="form-group">
+						<!-- <label class="info-title" for="exampleInputName">Change password change</label> -->
+						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
+						<a href='{% url "password_change" %}'>Change Password</a>
+						<!-- <span class='help-text'>Cannot change email</span><br /> -->
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

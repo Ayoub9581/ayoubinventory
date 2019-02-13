@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="my-wishlist-page">
+	<div class="row">
+		<div class="col-md-12 my-wishlist">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<h4>order</h4>
+							</th>
+							<th>
+								<h4>order ID </h4>
+							</th>
+							<th>
+								<h4>Total Order </h4>
+							</th>
+							<th>
+								<h4>Time Order </h4>
+							</th>
+							<th>
+								<h4>order detail </h4>
+							</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						{% for object in object_list %}
+						<tr>
+							<td class="col-md-2">{{forloop.counter}}</td>
+							<td class="col-md-2">
+								<div class="product-name"><a href="{{ object.get_absolute_url }}">{{object.order_id}}</a></div>
+								<div class="price">
+									{{ object.get_status }}
+								</div>
+							</td>
+							<td class="col-md-2">
+								<!-- <a href="#" class="btn-upper btn btn-primary">Add to cart</a> -->
+								<a href="#" class="btn-upper btn btn-primary">total :<b> {{object.total}} $</b></a>
+							</td>
+							<td class="col-md-2">
+								<!-- <a href="#" class="btn-upper btn btn-primary">Add to cart</a> -->
+								<a href="#" class="btn-upper btn btn-primary"><b>{{object.pretty_date_order}}</b></a>
+							</td>
+							<td class="col-md-1 ">
+								<a href="{{ object.get_absolute_url }}" class="btn-upper btn btn-primary">detail<i class="fa fa-arrow-leftt"></i></a>
+							</td>
+						</tr>
+
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div><!-- /.row -->
+</div><!-- /.sigin-in-->
+
+</div>
+<br /><br /><br />
+
+
+
+
+{% endblock %}
+
+
+<div class='row'>
+	<div class='col-12'>
+		<h1>Orders</h1>
+	</div>
+</div>
+<div class='row'>
+	<div class='col'>
+		<table class='table'>
+			<thead>
+				<th>Order Id</th>
+				<th>Status</th>
+				<th>Total</th>
+			</thead>
+
+			<tbody>
+				{% for object in object_list %}
+				<tr>
+					<td><a href='{{ object.get_absolute_url }}'>{{ object.order_id }}</a></td>
+					<td>{{ object.get_status }}</td>
+					<td>{{ object.total }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="3">
+						<p class='lead'>No orders yet.
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+	</div>
+</div>

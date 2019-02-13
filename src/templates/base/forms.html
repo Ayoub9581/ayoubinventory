@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="product-comparison">
+<div class='col-12 col-md-6 mx-auto'>
+	{% if title %}<h1 class='my-3'>{{ title }}</h1>{% endif %}
+	<form method='POST' action='{% if action_url %}{{ action_url }}{% endif %}'> {% csrf_token %}
+		{% if next_url %}
+		<input type='hidden' name='next' value='{{ next_url }}' />
+		{% endif %}
+		<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+			<!-- <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" checked> -->
+			{{ form.as_p }}
+			<span class="mdl-checkbox__label"></span>
+		</label>
+<br/><br/>
+		<!-- {{ form.as_p }} -->
+		<button type='submit' class='btn btn-primary'>Save</button>
+	</form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="{% url 'orders:list' %}">orders</a></li>
+				<li class='active'>{{request.path}}</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div><!-- /.breadcrumb -->
+
+<div class="product-comparison">
+	<div>
+		<h1 class="page-title text-center heading-title">list of addresses</h1>
+		<div class="table-responsive">
+			<table class="table compare-table inner-top-vs">
+				<th> order id</th>
+				<th> shipping address</th>
+				<th> billing address</th>
+				<th> Order Total </th>
+				<th> SubTotal</th>
+				<th> shipping</th>
+				<th> shipping status</th>
+				<tr>
+					<th>{{object.order_id}}</th>
+					<td>
+						<div class="product">
+							<div class="product-image">
+								<div class="image">
+									<a href="detail.html">
+										{{ object.shipping_address_final }}
+									</a>
+								</div>
+
+							</div>
+						</div>
+					</td>
+
+					<td>
+						<div class="product">
+							<div class="product-image">
+								<div class="image">
+									<a href="detail.html">
+										{{ object.billing_address_final }}
+									</a>
+								</div>
+
+							</div>
+						</div>
+					</td>
+
+					<td>
+						<div class="product">
+							<div class="product-image">
+								<div class="image">
+									<a href="#">
+										${{ object.total }}
+									</a>
+								</div>
+
+							</div>
+						</div>
+					</td>
+
+					<td>
+						<div class="product">
+							<div class="product-image">
+								<div class="image">
+									<a href="#">
+										${{ object.cart.total }}
+									</a>
+								</div>
+
+
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="product">
+							<div class="product-image">
+								<div class="image">
+									<a href="#">
+										${{ object.shipping_total }}
+									</a>
+								</div>
+
+
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="product">
+							<div class="product-image">
+								<div class="image">
+									<a href="detail.html">
+										{{ object.get_status }}
+									</a>
+								</div>
+
+
+							</div>
+						</div>
+					</td>
+					<!-- <td>
+						<div class="product">
+							<div class="product-image">
+								<div class="image">
+									<a href="{{ obj.get_absolute_url }}">
+										<span><i class="fa fa-edit"></i></span>
+									</a>
+								</div>
+
+
+							</div>
+						</div>
+					</td> -->
+				</tr>
+
+			</table>
+			<div class="col-md-12 outer-bottom-small m-t-20">
+			<a href='{% url "products:list" %}'>	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Continue shopping</button></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+<div class='row'>
+	<div class='col-12 col-md-6 mx-auto'>
+		<h1>Order {{ object.order_id }}</h1>
+		<hr />
+	</div>
+</div>
+
+<div class='row'>
+	<div class='col-12 col-md-6 mx-auto'>
+		<p>Items: {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+		<p>Shipping Address: {{ object.shipping_address_final }}</p>
+		<p>Billing Address: {{ object.billing_address_final }}</p>
+		<p>Subtotal: {{ object.cart.total }}</p>
+		<p>Shipping Total: {{ object.shipping_total }}</p>
+		<p>Order Total: {{ object.total }}</p>
+		<p>Order Status: {{ object.get_status }}</p>
+	</div>

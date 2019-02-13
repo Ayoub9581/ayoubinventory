@@ -1,0 +1,10 @@
+<!-- <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder search-form "> -->
+	<div class="search-area search-form">
+		<form method="GET" action="{% url 'search:query' %}">
+			<div class="control-group">
+				<input class="search-field" placeholder="Search here..."  name='q' value='{{ request.GET.q }}'/>
+				<button class="search-button " type="submit" >Search </button>
+			</div>
+		</form>
+	</div>
+</div>

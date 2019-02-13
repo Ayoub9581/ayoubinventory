@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="my-wishlist-page">
+		<div class="row">
+			<div class="col-md-12 my-wishlist">
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th colspan="4" class="heading-title">Your product history:  {{object_list.count}} products</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for obj in object_list %}
+				{% include 'products/snippets/history.html' with instance=obj.content_object %}
+			{% endfor %}
+
+		</tbody>
+	</table>
+</div>
+</div>			</div><!-- /.row -->
+	</div><!-- /.sigin-in-->
+
+</div>
+<br/><br/><br/>
+
+
+
+{% endblock %}
+
+
+
+	<div class='row'>
+			<div class='col-12 my-3'>
+							<h1>Product View History</h1>
+							<hr/>
+			</div>
+{% for obj in object_list %}
+	<div class='col'>
+	{{ forloop.counter }}
+	{% include 'products/snippets/card.html' with instance=obj.content_object %}
+	</div>
+{% endfor %}
+</div>

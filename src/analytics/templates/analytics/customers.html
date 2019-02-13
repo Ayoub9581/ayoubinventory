@@ -1,0 +1,39 @@
+{% extends 'analytics/dashboard.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	
+<h3>{{title}}</h3>
+<div class="table-responsive">
+	<table class="table table-striped table-sm">
+		<thead>
+			<tr>
+				<th>N°</th>
+				<th>customer name</th>
+				<th>customer Id</th>
+				<th>email</th>
+				<th>created</th>
+				<th>last_login</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for customer in customers %}
+			<tr>
+				<td>{{forloop.counter}}</td>
+				<td>{{customer.user.full_name}}</td>
+				<td>{{customer.customer_id}}</td>
+				<td>{{customer.email}}</td>
+				<td>{{customer.pretty_date_billing}}</td>
+				<td>{{customer.user.last_login}}</td>
+
+				<td><button type="button" class="btn btn-warning">Edit</button></td>
+				<td><button type="button" class="btn btn-danger">Delete</button></td>
+			</tr>
+
+			{% endfor %}
+
+		</tbody>
+	</table>
+</div>
+{% endblock %}
