@@ -1,4 +1,4 @@
-#AYOUB AR 2
+#AYOUB AR 3
 from django.contrib.auth import authenticate, login, get_user_model
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect
