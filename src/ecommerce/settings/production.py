@@ -30,7 +30,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Python ecommerce <ayoubarahmat9@gmail.com>'
-BASE_URL = 'https://www.bzoop.com./'
+BASE_URL = 'https://www.bzoop.com/'
 
 MANAGERS = (
 	('Ayoub Arahmat', "ayoubarahmat9@gmail.com"),
@@ -44,7 +44,7 @@ ADMINS = MANAGERS
 DEBUG = False
 
 # ALLOWED_HOSTS = ['.pythonecommerce.com']
-ALLOWED_HOSTS = ['www.bzoop.com','68.183.169.8']
+ALLOWED_HOSTS = ['.bzoop.com','68.183.169.8']
 
 
 # Application definition
