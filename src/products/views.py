@@ -241,6 +241,7 @@ def add_product_upc(request):
 				instance.description = results['results'][0]['description']
 				instance.image  = results['results'][0]['images'][0]
 				print("save final")
+				instance.save()
 				# instance.save()
 				# return render(request, 'products/add-product-upc.html',{'form':form})
 		else:
