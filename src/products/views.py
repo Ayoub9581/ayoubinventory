@@ -221,8 +221,6 @@ def product_detail_view(request, pk=None, *args, **kwargs):
 
 
 def add_product_upc(request):
-	if not  request.user.is_staff: 
-		return redirect("home")
 	form = ProductForm()
 	instance = None
 	if request.method == 'POST':
