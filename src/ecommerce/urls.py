@@ -23,6 +23,8 @@ from carts.views import cart_detail_api_view
 from marketing.views import  MailChimpWebHookView,MarketingUpdateView
 from orders.views import LibraryView
 
+from products.views import add_product_upc
+
 from .views import home_page, about_page, contact_page
 
 urlpatterns = [
@@ -56,6 +58,7 @@ urlpatterns = [
 	path('library/', LibraryView.as_view(), name='library'),
 	path('orders/', include("orders.urls", namespace='orders')),
 	path('products/', include("products.urls", namespace='products')),
+	path('add/product/', add_product_upc, name="add-product-upc"),
 	path('category/', include("categories.urls", namespace='subcategory')),
 	path('search/', include("search.urls", namespace='search')),
 	path('settings/', RedirectView.as_view(url='/account')),

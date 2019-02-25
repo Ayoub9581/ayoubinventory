@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="contact-page">      
+	<div class="row">
+
+		<div class="col-md-9 contact-form">
+        
+        <form class="" action="" method="POST"> {% csrf_token %}
+    <center>{{form.as_p}}</center>
+        <div class="col-md-12 outer-bottom-small m-t-20">
+			<a>	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">lookup</button></a>
+			</div>
+    </form>
+
+ </div>
+        </div>
+        </div>
+
+{% if instance %}
+    
+    <div class="my-wishlist-page">
+		<div class="row">
+			<div class="col-md-12 my-wishlist">
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+			
+				<th colspan="4" class="heading-title">
+				{% if instance.title %} product found : {{instance.upc}} {% else %}  product Not Found {% endif %}
+				
+				</th>
+			
+			</tr>
+		</thead>
+		<tbody>
+			
+				<tr>
+	{% if instance.image.url is not None %}<td class="col-md-2"><img src="{{instance.image}}" alt="imga"></td> {% endif %}
+	{% if instance.title is not None%}
+	<td class="col-md-7">
+		<div class="product-name"><a href="#">{{instance.title}}</a></div>
+		<div class="rating">
+			<i class="fa fa-star rate"></i>
+			<i class="fa fa-star rate"></i>
+			<i class="fa fa-star rate"></i>
+			<i class="fa fa-star rate"></i>
+			<i class="fa fa-star non-rate"></i>
+			<span class="review">( 06 Reviews )</span>
+		</div>
+		<div class="price">
+			${{instance.price}}
+			<span></span>
+		</div>
+	</td>
+	{% endif %}
+	{% if instance.title %}
+	<td class="col-md-2">
+		<!-- <a href="#" class="btn-upper btn btn-primary">Add to cart</a> -->
+		<a href="#" class="btn-upper btn btn-primary">add</a>
+	</td>
+	<td class="col-md-1 close-btn">
+		<!-- <a href="#" class=""><i class="fa fa-times"></i></a> -->
+	</td>
+	{% endif %}
+</tr>
+
+
+		</tbody>
+	</table>
+</div>
+</div>			</div><!-- /.row -->
+	</div><!-- /.sigin-in-->
+
+</div>
+
+
+{% endif %}
+
+
+
+
+{% endblock  %}

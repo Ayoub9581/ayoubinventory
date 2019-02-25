@@ -32,7 +32,7 @@ EMAIL_HOST_PASSWORD = 'ABIRgd#@ay9581AY96GDAX'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Python ecommerce <ayoubarahmat9@gmail.com>'
-BASE_URL = '68.183.169.89:8001'
+BASE_URL = 'https://www.bzoop.com/'
 
 
 MANAGERS = (
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 	# third party
 	'storages',
+	'paypal.standard.ipn',
 
 	#our apps
 	'accounts.apps.AccountsConfig',
@@ -87,6 +88,8 @@ MAILCHIMP_EMAIL_LIST_ID = "3884f8f9b9"
 STRIPE_SECRET_KEY = "sk_test_mRJizGawnt7xOmULP4GcxArN"
 STRIPE_PUB_KEY = 'pk_test_eZVMmgfyRaI4Wpk35OgT4Yhr'
 
+API_KEY_SEMANTIC_PUBLIC = 'SEM321DA9F2435FB4C77CBA14FAD73AF0E12'
+API_KEY_SEMANTIC_SECRET = 'NTRkNWMyZGY0YjI1ODcxZWE2M2MyNTNkODEwYjMwYmE'
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',

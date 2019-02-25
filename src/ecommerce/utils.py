@@ -1,11 +1,16 @@
-import datetime 
+import datetime
 import os
 import random
 import string
 
 from django.utils import timezone
 from django.utils.text import slugify
+from semantics3 import Products
 
+from django.conf import settings
+
+SEMANTIC_PUBLIC =  getattr(settings, "API_KEY_SEMANTIC_PUBLIC", 'SEM321DA9F2435FB4C77CBA14FAD73AF0E12')
+SEMANTIC_SECRET =  getattr(settings, "API_KEY_SEMANTIC_SECRET", 'NTRkNWMyZGY0YjI1ODcxZWE2M2MyNTNkODEwYjMwYmE')
 
 
 def get_last_month_data(today):
@@ -114,3 +119,20 @@ def unique_slug_generator(instance, new_slug=None):
 				)
 		return unique_slug_generator(instance, new_slug=new_slug)
 	return slug
+
+
+
+
+def isUpcExist(code):
+	product = Products(SEMANTIC_PUBLIC ,SEMANTIC_SECRET)
+	product.products_field("upc",str(code))
+	results = product.get_products()
+	if results['results_count'] == 1:
+		# name = str(results['results'][0]['name'])
+		# price = str(results['results'][0]['sitedetails'][0]['latestoffers'][0]['price'])
+		# print("UPC : {} , name : {}, Price : {}".format(str(code),name,price))
+		return results, True
+	else:
+		print("not exist")
+		return results, False
+

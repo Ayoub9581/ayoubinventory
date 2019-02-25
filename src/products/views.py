@@ -7,10 +7,16 @@ from django.views.generic import ListView, DetailView, View
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger , Paginator
 
+from django.http import JsonResponse
+
 from analytics.mixins import ObjectViewedMixin
 from carts.models import Cart
 from .models import Product, ProductFile
 from categories.models import Category
+
+from ecommerce.utils import isUpcExist
+
+from .forms import ProductForm
 
 
 class ProductFeaturedListView(ListView):
@@ -212,3 +218,32 @@ def product_detail_view(request, pk=None, *args, **kwargs):
 		'object': instance
 	}
 	return render(request, "products/detail.html", context)
+
+
+def add_product_upc(request):
+	if not  request.user.is_staff: 
+		return redirect("home")
+	form = ProductForm()
+	instance = None
+	if request.method == 'POST':
+		form = ProductForm(request.POST)
+		if form.is_valid():
+			print(request.POST)
+			instance = form.save(commit=False)
+			form.save(commit=False)
+			print('begein test')
+			results ,isexist = isUpcExist(instance.upc)
+			if isexist:
+				print("Product Found")
+				instance.title = results['results'][0]['name']
+				instance.price = float(results['results'][0]['sitedetails'][0]['latestoffers'][0]['price'])
+				instance.active  = False
+				instance.description = results['results'][0]['description']
+				instance.image  = results['results'][0]['images'][0]
+				print("save final")
+				# instance.save()
+				# return render(request, 'products/add-product-upc.html',{'form':form})
+		else:
+			print("Error")
+	context= {'form':form,'instance':instance}
+	return render(request, 'products/add-product-upc.html',context)

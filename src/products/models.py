@@ -5,6 +5,7 @@ import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
+
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import pre_save, post_save
@@ -25,6 +26,7 @@ def get_filename_ext(filepath):
 def upload_image_path(instance, filename):
 	# print(instance)
 	#print(filename)
+	# if instance.startwith("http") or instance.startwith("https"):
 	new_filename = random.randint(1,3910209312)
 	name, ext = get_filename_ext(filename)
 	final_filename = '{new_filename}{ext}'.format(new_filename=new_filename, ext=ext)
@@ -70,16 +72,17 @@ class ProductManager(models.Manager):
 
 
 class Product(models.Model):
-	title           = models.CharField(max_length=120)
+	title           = models.CharField(max_length=120,null=True, blank=True, verbose_name="")
+	upc 			= models.CharField(max_length=12, null=True, blank=True, verbose_name="barcode") 
 	slug            = models.SlugField(blank=True, unique=True)
-	description     = models.TextField()
-	price           = models.DecimalField(decimal_places=2, max_digits=20, default=39.99)
+	description     = models.TextField(null=True, blank=True)
+	price           = models.DecimalField(decimal_places=2, max_digits=20, default=39.99,null=True, blank=True,verbose_name="")
 	image           = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
 	featured        = models.BooleanField(default=False)
 	active          = models.BooleanField(default=True)
 	timestamp       = models.DateTimeField(auto_now_add=True)
 	is_digital      = models.BooleanField(default=False) # User Library
-	sub_category        = models.ForeignKey(SubCategory, null=True, blank=True, on_delete=models.DO_NOTHING)
+	sub_category    = models.ForeignKey(SubCategory, null=True, blank=True, on_delete=models.DO_NOTHING)
 	category        = models.ForeignKey(Category, null=True, blank=True, on_delete=models.DO_NOTHING)
 
 	objects = ProductManager()
@@ -96,6 +99,9 @@ class Product(models.Model):
 
 	def __unicode__(self):
 		return self.title
+	
+	def pretty_date(self):
+		return self.timestamp.strftime("%x%X")
 
 	@property
 	def name(self):

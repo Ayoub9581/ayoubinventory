@@ -6,7 +6,8 @@ from .views import (
 		ProductListView,
 		ProductDetailSlugView,
 		ProductDownloadView,
-		product_list_view
+		product_list_view,
+		add_product_upc
 		)
 
 app_name="products"
