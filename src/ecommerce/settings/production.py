@@ -43,7 +43,7 @@ ADMINS = MANAGERS
 DEBUG = True
 
 # ALLOWED_HOSTS = ['.pythonecommerce.com']
-ALLOWED_HOSTS = ['.medayor.com',]
+ALLOWED_HOSTS = ['.medayor.com','104.248.196.174']
 
 
 # Application definition
