@@ -43,7 +43,7 @@ ADMINS = MANAGERS
 DEBUG = False
 
 # ALLOWED_HOSTS = ['.pythonecommerce.com']
-ALLOWED_HOSTS = ['.bzoop.com']
+ALLOWED_HOSTS = ['.bzoop.com','www.bzoop.com','bzoop.com']
 
 
 # Application definition
