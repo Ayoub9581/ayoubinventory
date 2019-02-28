@@ -24,7 +24,7 @@ SECRET_KEY = '@!-)jwmuzh8btr380g61=g+#&zzei&dz2(&=xbvxztady)_p(r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.medayor.com','68.183.169.8']
+ALLOWED_HOSTS = ['.medayor.com','68.183.169.8',"*"]
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ayoubarahmat9@gmail.com'
