@@ -24,7 +24,7 @@ SECRET_KEY = '@!-)jwmuzh8btr380g61=g+#&zzei&dz2(&=xbvxztady)_p(r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'www.bzoop.com']
+ALLOWED_HOSTS = ['.bzoop.com']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ayoubarahmat9@gmail.com' # sendgrid
@@ -32,7 +32,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'ABIRgd#@ay9581AY96G
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Python ecommerce <ayoubarahmat9@gmail.com>'
-BASE_URL = '127.0.0.1:8001'
+BASE_URL = 'https://www.bzoop.com/'
 
 MANAGERS = (
 	('Ayoub Arahmat', "ayoubarahmat9@gmail.com"),
