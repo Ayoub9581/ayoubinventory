@@ -6,8 +6,8 @@
 		<div class="breadcrumb-inner">
 			<ul class="list-inline list-unstyled">
 				<li><a href="#">Home</a></li>
-				<li><a href="#">Clothing</a></li>
-				<li class='active'>Floral Print Buttoned</li>
+				<li><a href="#">{% if object.category %}  {{object.categoty}} {% else %} product {% endif %}</a></li>
+				<li class='active'>{{object.title}}</li>
 			</ul>
 		</div><!-- /.breadcrumb-inner -->
 	</div><!-- /.container -->
@@ -25,7 +25,8 @@
 					<div class="sidebar-widget  wow fadeInUp outer-top-vs ">
 						<div id="advertisement" class="advertisement">
 							<div class="item">
-								<div class="avatar"><img src="{% static 'assets/images/testimonials/member1.png' %}" alt="Image"></div>
+								<div class="avatar"><img src="{% static 'assets/images/testimonials/member1.png' %}" 
+								alt="Image"></div>
 								<div class="testimonials"><em>"</em> Quick deposit to my paypal account, thank you! Love the free shipping too!.<em>"</em></div>
 								<div class="clients_author">Ayoub AR <span></span> </div><!-- /.container-fluid -->
 							</div><!-- /.item -->
@@ -60,8 +61,10 @@
 
 								<div id="owl-single-product">
 									<div class="single-product-gallery-item" id="slide1">
-										<a data-lightbox="image-1" data-title="Gallery" href="{{object.image.url}}" width="700px" height="widfth=" 700px"">
-											<img class="img-responsive" alt="" src="{{object.image.url}}" data-echo="{{object.image.url}}" />
+										<a data-lightbox="image-1" data-title="Gallery" 
+										href="{{object.image.url}}" width="700px" height="widfth=" 700px"">
+											<img class="img-responsive" alt="" src="{{object.image.url}}"
+											 data-echo="{{object.image.url}}" />
 										</a>
 									</div><!-- /.single-product-gallery-item -->
 

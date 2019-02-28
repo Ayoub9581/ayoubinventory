@@ -46,7 +46,8 @@ class ProductQuerySet(models.query.QuerySet):
 		lookups = (Q(title__icontains=query) |
 				  Q(description__icontains=query) |
 				  Q(price__icontains=query) |
-				  Q(tag__title__icontains=query)
+				  Q(tag__title__icontains=query)|
+				  Q(upc__icontains=query)
 				  )
 		# tshirt, t-shirt, t shirt, red, green, blue,
 		return self.filter(lookups).distinct()
@@ -74,7 +75,7 @@ class ProductManager(models.Manager):
 class Product(models.Model):
 	title           = models.CharField(max_length=120,null=True, blank=True, verbose_name="")
 	upc 			= models.CharField(max_length=12, null=True, blank=True, verbose_name="barcode") 
-	slug            = models.SlugField(blank=True, unique=True)
+	slug            = models.SlugField(max_length=255,unique=True)
 	description     = models.TextField(null=True, blank=True)
 	price           = models.DecimalField(decimal_places=2, max_digits=20, default=39.99,null=True, blank=True,verbose_name="")
 	image           = models.ImageField(upload_to=upload_image_path, null=True, blank=True)

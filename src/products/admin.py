@@ -10,8 +10,8 @@ class ProductFileInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-	list_display = ['__str__', 'slug', 'is_digital','category','sub_category','pretty_date']
-	list_editable = ['category','sub_category']
+	list_display = ['__str__', 'slug', 'is_digital','category','sub_category','pretty_date','active']
+	list_editable = ['category','sub_category','active']
 	inlines = [ProductFileInline]
 	class Meta:
 		model = Product

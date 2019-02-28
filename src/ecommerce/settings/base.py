@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = '@!-)jwmuzh8btr380g61=g+#&zzei&dz2(&=xbvxztady)_p(r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['.medayor.com','68.183.169.8']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ayoubarahmat9@gmail.com'
@@ -32,7 +32,7 @@ EMAIL_HOST_PASSWORD = 'ABIRgd#@ay9581AY96GDAX'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Python ecommerce <ayoubarahmat9@gmail.com>'
-BASE_URL = 'https://www.bzoop.com/'
+BASE_URL = 'https://www.medayor.com/'
 
 
 MANAGERS = (

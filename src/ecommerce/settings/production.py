@@ -40,10 +40,10 @@ ADMINS = MANAGERS
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['.pythonecommerce.com']
-ALLOWED_HOSTS = ['.bzoop.com','68.183.169.8']
+ALLOWED_HOSTS = ['.medayor.com',]
 
 
 # Application definition
