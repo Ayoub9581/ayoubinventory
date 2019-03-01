@@ -9,8 +9,8 @@ from semantics3 import Products
 
 from django.conf import settings
 
-SEMANTIC_PUBLIC =  getattr(settings, "API_KEY_SEMANTIC_PUBLIC", 'SEM321DA9F2435FB4C77CBA14FAD73AF0E12')
-SEMANTIC_SECRET =  getattr(settings, "API_KEY_SEMANTIC_SECRET", 'NTRkNWMyZGY0YjI1ODcxZWE2M2MyNTNkODEwYjMwYmE')
+SEMANTIC_PUBLIC =  getattr(settings, "API_KEY_SEMANTIC_PUBLIC", 'SEM3B18982BA1B811D6E25715F16AC28AAC7')
+SEMANTIC_SECRET =  getattr(settings, "API_KEY_SEMANTIC_SECRET", 'NjUyYTA3YTVkZjcyYTc5NjhkYzA5ODIyYWVmNGZlZjE')
 
 
 def get_last_month_data(today):
