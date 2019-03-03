@@ -2,6 +2,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from products.models import Product
+from .models import Search
+from analytics.utils import get_client_ip
 
 class SearchProductView(ListView):
 	template_name = "search/view.html"
@@ -10,7 +12,7 @@ class SearchProductView(ListView):
 		context = super(SearchProductView, self).get_context_data(*args, **kwargs)
 		query = self.request.GET.get('q')
 		context['query'] = query
-		# SearchQuery.objects.create(query=query)
+		Search.objects.create(query=query,ip_address=get_client_ip(self.request))
 		return context
 
 	def get_queryset(self, *args, **kwargs):
