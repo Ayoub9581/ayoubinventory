@@ -24,7 +24,7 @@ SECRET_KEY = '@!-)jwmuzh8btr380g61=g+#&zzei&dz2(&=xbvxztady)_p(r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.bzoop.com']
+ALLOWED_HOSTS = ['.bzoop.com','*']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ayoubarahmat9@gmail.com' # sendgrid
@@ -91,8 +91,8 @@ MAILCHIMP_EMAIL_LIST_ID = "3884f8f9b9"
 STRIPE_SECRET_KEY = "sk_test_mRJizGawnt7xOmULP4GcxArN"
 STRIPE_PUB_KEY = 'pk_test_eZVMmgfyRaI4Wpk35OgT4Yhr'
 
-API_KEY_SEMANTIC_PUBLIC = 'SEM3B18982BA1B811D6E25715F16AC28AAC7'
-API_KEY_SEMANTIC_SECRET = 'NjUyYTA3YTVkZjcyYTc5NjhkYzA5ODIyYWVmNGZlZjE'
+API_KEY_SEMANTIC_PUBLIC = 'SEM3399D137CF378D253D294E65E1FD58622'
+API_KEY_SEMANTIC_SECRET = 'MmViZGE5Njk5MWM2OWQ5MjVjYWU4NWM3ZGRhMzA4MTg'
 
 
 
@@ -130,24 +130,24 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-#AYOUB AR 3
-# DATABASES = {
-# 	'default': {
-# 		'ENGINE': 'django.db.backends.postgresql',
-# 		'NAME':'inventory',
-# 		'USER':'ayoub',
-# 		'PASSWORD':'AY@96gdAXgd#@ay9581',
-# 		'HOST':'localhost',
-# 		'PORT':'',
-# 	}
-# }
+# AYOUB AR 3
+#DATABASES = {
+#	'default': {
+#		'ENGINE': 'django.db.backends.postgresql',
+#		'NAME':'jhoninventory',
+#		'USER':'Samir',
+#		'PASSWORD':'',
+#		'HOST':'localhost',
+#		'PORT':'5432 ',
+#	}
+#}
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+ 	'default': {
+ 		'ENGINE': 'django.db.backends.sqlite3',
+ 		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+ 	}
+ }
 
 
 # Password validation

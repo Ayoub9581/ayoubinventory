@@ -21,5 +21,14 @@ def sub_category_detail(request,slug):
 		instance.slug = unique_slug_generator(instance.slug)
 	context = {
 		'instance':instance,
+		'categories':Category.objects.draft(),
 	}
 	return render(request,'categories/detail.html',context)
+
+def category_datails(request,id):
+	instance = get_object_or_404(Category,id=id)
+	if instance.id is None:
+		return Http404
+	context = {'instance':instance,'categories':Category.objects.draft(),}
+
+	return render(request, 'categories/category-detail.html',context)

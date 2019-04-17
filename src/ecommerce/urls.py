@@ -25,10 +25,11 @@ from orders.views import LibraryView
 
 from products.views import add_product_upc
 
-from .views import home_page, about_page, contact_page
+from .views import home_page, about_page, contact_page,app_page
 
 urlpatterns = [
 	path('', home_page, name='home'),
+	path('bzoop/', app_page, name='app_page'),
 	path('about/', about_page, name='about'),
 	path('accounts/', RedirectView.as_view(url='/account')),
 	path('account/', include("accounts.urls", namespace='account')),

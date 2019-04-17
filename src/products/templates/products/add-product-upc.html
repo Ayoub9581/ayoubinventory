@@ -1,87 +1,122 @@
-{% extends 'base.html' %}
-
+{% extends 'base2.html' %}
+{% load staticfiles %}
 {% block content %}
+<div class="container">
+	<div class="heading mb-4">
+		<h2 class="title">Barcode</h2>
+		<p>To start selling, just enter a barcode (e.g. 1234667890123) without spaces or dashes into the box below</p>
+	</div><!-- End .heading -->
 
+	<form action="" method="post"> {% csrf_token %}
+		<div class="form-group required-field">
+			<label for="reset-email">Barcode</label>
+			<!-- <input type="email" class="form-control" id="reset-email" name="reset-email" required> -->
+			{{form}}
+		</div><!-- End .form-group -->
 
-
-<div class="contact-page">      
-	<div class="row">
-
-		<div class="col-md-9 contact-form">
-        
-        <form class="" action="" method="POST"> {% csrf_token %}
-    <center>{{form.as_p}}</center>
-        <div class="col-md-12 outer-bottom-small m-t-20">
-			<a>	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">lookup</button></a>
-			</div>
-    </form>
-
- </div>
-        </div>
-        </div>
+		<div class="form-footer">
+			<button type="submit" class="btn btn-primary">Lookup</button>
+		</div><!-- End .form-footer -->
+	</form>
+</div><!-- End .container -->
 
 {% if instance %}
-    
-    <div class="my-wishlist-page">
-		<div class="row">
-			<div class="col-md-12 my-wishlist">
-<div class="table-responsive">
-	<table class="table">
-		<thead>
-			<tr>
-			
-				<th colspan="4" class="heading-title">
-				{% if instance.title %} product found : {{instance.upc}} {% else %}  product Not Found {% endif %}
-				
-				</th>
-			
-			</tr>
-		</thead>
-		<tbody>
-			
-				<tr>
-	{% if instance.image.url is not None %}<td class="col-md-2"><img src="{{instance.image}}" alt="imga"></td> {% endif %}
-	{% if instance.title is not None%}
-	<td class="col-md-7">
-		<div class="product-name"><a href="#">{{instance.title}}</a></div>
-		<div class="rating">
-			<i class="fa fa-star rate"></i>
-			<i class="fa fa-star rate"></i>
-			<i class="fa fa-star rate"></i>
-			<i class="fa fa-star rate"></i>
-			<i class="fa fa-star non-rate"></i>
-			<span class="review">( 06 Reviews )</span>
-		</div>
-		<div class="price">
-			${{instance.price}}
-			<span></span>
-		</div>
-	</td>
-	{% endif %}
-	{% if instance.title %}
-	<td class="col-md-2">
-		<!-- <a href="#" class="btn-upper btn btn-primary">Add to cart</a> -->
-		<a href="#" class="btn-upper btn btn-primary">add</a>
-	</td>
-	<td class="col-md-1 close-btn">
-		<!-- <a href="#" class=""><i class="fa fa-times"></i></a> -->
-	</td>
-	{% endif %}
-</tr>
+<hr>
+<hr>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-9">
+			<div class="product-single-container product-single-default" style="background-color:#E6E6E6">
+				<div class="row">
+					<div class="col-lg-7 col-md-6 product-single-gallery">
+						<div class="product-slider-container product-item">
+							<div class="product-single-carousel owl-carousel owl-theme">
+								<div class="product-item">
+									{% if instance.image.url is not None %}
+									<img class="product-single-image" src="{{instance.image}}" data-zoom-image="{{instance.image}}" />
+									{% else %}
+									<img class="product-single-image" src="{% static 'porto/assets/images/products/zoom/notfound.png' %}" data-zoom-image="{% static 'porto/assets/images/notfound.png' %}" />
+									{% endif %}
+								</div>
+							</div>
+							<!-- End .product-single-carousel -->
+							<span class="prod-full-screen">
+								<i class="icon-plus"></i>
+							</span>
+						</div>
+					</div><!-- End .col-lg-7 -->
+
+					<div class="col-lg-5 col-md-6">
+						<div class="product-single-details">
+							<h1 class="product-title">
+								{% if instance.title %}
+								product upc's {{instance.upc}} Found
+								{% else %}
+									product  NOT Found
+								{% endif %}
+
+							 </h1>
+
+							<div class="product-title">
+								<p> {% if instance.title %} {{instance.title}}{% else %} {% endif %}  </p>
+							</div><!-- End .product-desc -->
+
+							<div class="product-filters-container">
+								<div class="product-single-filter">
+									<label>{% if instance.title %} proposal price: ${{instance.price}} {% else %} {% endif %}</label>
+								</div><!-- End .product-single-filter -->
+							</div><!-- End .product-filters-container -->
+
+							<div class="product-action product-all-icons">
+								<!-- <a href="#" class="paction add-cart" title="Add to Cart">
+										<span>Add to yout product </span>
+									</a> -->
+									{% if instance.title %}
+								<input type="submit" class="btn btn-primary" value="Add to my products">
+								{% endif %}
+
+							</div><!-- End .product-action -->
 
 
-		</tbody>
-	</table>
-</div>
-</div>			</div><!-- /.row -->
-	</div><!-- /.sigin-in-->
+						</div><!-- End .product-single-details -->
+					</div><!-- End .col-lg-5 -->
+				</div><!-- End .row -->
+			</div><!-- End .product-single-container -->
 
-</div>
 
+		</div><!-- End .col-lg-9 -->
+
+		<div class="sidebar-overlay"></div>
+		<div class="sidebar-toggle"><i class="icon-sliders"></i></div>
+		<aside class="sidebar-product col-lg-3 padding-left-lg mobile-sidebar">
+			<div class="sidebar-wrapper">
+				<div class="widget widget-brand">
+					<a href="#">
+						<img src="{% static 'porto/assets/images/product-brand.png' %}" alt="brand name">
+					</a>
+				</div><!-- End .widget -->
+
+				<div class="widget widget-info">
+					<ul>
+						<li>
+							<i class="icon-shipping"></i>
+							<h4>FREE<br>SHIPPING</h4>
+						</li>
+						<li>
+							<i class="icon-us-dollar"></i>
+							<h4>100% MONEY<br>BACK GUARANTEE</h4>
+						</li>
+						<li>
+							<i class="icon-online-support"></i>
+							<h4>ONLINE<br>SUPPORT 24/7</h4>
+						</li>
+					</ul>
+				</div><!-- End .widget -->
+			</div>
+		</aside><!-- End .col-md-3 -->
+	</div><!-- End .row -->
+</div><!-- End .container -->
 
 {% endif %}
-
-
-
-
-{% endblock  %}
+{% endblock %}

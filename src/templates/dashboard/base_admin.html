@@ -1,0 +1,130 @@
+{% url "sales-analytics" as sales_analytics %}
+
+<!doctype html>
+<html class="fixed">
+
+<head>
+	{% load staticfiles %}
+
+	<!-- Basic -->
+	<meta charset="UTF-8">
+
+	<title>Bzoop Dashboard</title>
+	<meta name="keywords" content="HTML5 Admin Template" />
+	<meta name="description" content="Bzoop Admin">
+	<meta name="author" content="okler.net">
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- Web Fonts  -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+	<!-- Vendor CSS -->
+			<link rel="stylesheet" href="{% static 'admin_base/assets/vendor/bootstrap/css/bootstrap.css' %}" />
+
+			<link rel="stylesheet" href="{% static 'admin_base/assets/vendor/font-awesome/css/font-awesome.css' %}" />
+			<link rel="stylesheet" href="{% static 'admin_base/assets/vendor/magnific-popup/magnific-popup.css' %}" />
+			<link rel="stylesheet" href="{% static 'admin_base/assets/vendor/bootstrap-datepicker/css/datepicker3.css' %}" />
+
+			<!-- Specific Page Vendor CSS -->
+			<link rel="stylesheet" href="{% static 'admin_base/assets/vendor/select2/select2.css' %}" />
+			<link rel="stylesheet" href="{% static 'admin_base/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css' %}" />
+
+			<!-- Theme CSS -->
+			<link rel="stylesheet" href="{% static 'admin_base/assets/stylesheets/theme.css' %}" />
+
+			<!-- Skin CSS -->
+			<link rel="stylesheet" href="{% static 'admin_base/assets/stylesheets/skins/default.css' %}" />
+
+			<!-- Theme Custom CSS -->
+			<link rel="stylesheet" href="{% static 'admin_base/assets/stylesheets/theme-custom.css' %}">
+
+			<!-- Head Libs -->
+			<script src="{% static 'admin_base/assets/vendor/modernizr/modernizr.js' %}"></script>
+</head>
+
+<body>
+	<section class="body">
+
+		{% include 'dashboard/header.html' %}
+
+		<div class="inner-wrapper">
+			<!-- start: sidebar -->
+			{% include 'dashboard/aside.html' %}
+
+			<section role="main" class="content-body">
+				<header class="page-header">
+					<h2>Bzoop</h2>
+
+					<div class="right-wrapper pull-right">
+						<ol class="breadcrumbs">
+							<li>
+								<a href="{{request.path}}">
+									<i class="fa fa-home"></i>
+								</a>
+							</li>
+							<li><span>{{request.path}}</span></li>
+						</ol>
+
+						<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+					</div>
+				</header>
+				{% block content %}
+
+				{% endblock %}
+			</section>
+		</div>
+	</section>
+
+
+	<!-- Vendor -->
+		<script src="{% static 'admin_base/assets/vendor/jquery/jquery.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/bootstrap/js/bootstrap.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/nanoscroller/nanoscroller.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/magnific-popup/magnific-popup.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/jquery-placeholder/jquery.placeholder.js' %}"></script>
+
+		<!-- Specific Page Vendor -->
+		<script src="{% static 'admin_base/assets/vendor/select2/select2.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/jquery-datatables/media/js/jquery.dataTables.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js' %}"></script>
+		<script src="{% static 'admin_base/assets/vendor/jquery-datatables-bs3/assets/js/datatables.js' %}"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="{% static 'admin_base/assets/javascripts/theme.js' %}"></script>
+
+		<!-- Theme Custom -->
+		<script src="{% static 'admin_base/assets/javascripts/theme.custom.js' %}"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="{% static 'admin_base/assets/javascripts/theme.init.js' %}"></script>
+
+
+		<!-- Examples -->
+		<script src="{% static 'admin_base/assets/javascripts/tables/examples.datatables.default.js' %}"></script>
+		<script src="{% static 'admin_base/assets/javascripts/tables/examples.datatables.row.with.details.js' %}"></script>
+		<script src="{% static 'admin_base/assets/javascripts/tables/examples.datatables.tabletools.js' %}"></script>
+
+
+	<!-- Examples -->
+	<script src="{% static 'admin_base/assets/javascripts/dashboard/examples.dashboard.js' %}"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js'></script>
+
+	<!-- Django Secure AJAX JS -->
+	<script src='{% static "origin/js/csrf.ajax.js" %}'></script>
+
+	<!-- eCommerce Sales Data JS -->
+	<script src='{% static "origin/js/ecommerce.sales.js" %}'></script>
+
+	<!-- eCommerce Custom JS -->
+	<script src='{% static "origin/js/ecommerce.js" %}'></script>
+
+	<!-- eCommerce Main JS -->
+	<script src='{% static "origin/js/ecommerce.main.js" %}'></script>
+</body>
+
+</html>

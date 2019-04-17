@@ -26,12 +26,14 @@ class Category(models.Model):
 	def __str__(self):
 		return self.category_name
 
-	def get_absolute_url(self):
-		pass
+
 
 	@property
 	def get_products(self):
 		return Product.objects.filter()
+
+	def get_absolute_url(self):
+		return reverse('subcategory:category-detail',kwargs={"id": self.id})
 
 	objects = CategoryManager()
 
@@ -45,6 +47,9 @@ class SubCategory(models.Model):
 
 	def __str__(self):
 		return self.title
+
+	def category_name(self):
+		return self.category.category_name
 
 	def get_absolute_url(self):
 		return reverse("subcategory:detail", kwargs={"slug": self.slug})

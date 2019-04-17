@@ -1,39 +1,101 @@
-{% extends 'analytics/dashboard.html' %}
+{% extends 'dashboard/base_admin.html' %}
 
 {% block content %}
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	
-<h3>{{title}}</h3>
-<div class="table-responsive">
-	<table class="table table-striped table-sm">
-		<thead>
-			<tr>
-				<th>N°</th>
-				<th>customer name</th>
-				<th>customer Id</th>
-				<th>email</th>
-				<th>created</th>
-				<th>last_login</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for customer in customers %}
-			<tr>
-				<td>{{forloop.counter}}</td>
-				<td>{{customer.user.full_name}}</td>
-				<td>{{customer.customer_id}}</td>
-				<td>{{customer.email}}</td>
-				<td>{{customer.pretty_date_billing}}</td>
-				<td>{{customer.user.last_login}}</td>
+<section class="panel">
+	<header class="panel-heading">
+		<div class="panel-actions">
+			<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+			<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+		</div>
 
-				<td><button type="button" class="btn btn-warning">Edit</button></td>
-				<td><button type="button" class="btn btn-danger">Delete</button></td>
-			</tr>
+		<h2 class="panel-title">Activated users</h2>
+	</header>
+	<div class="panel-body">
+		<table class="table table-bordered table-striped mb-none" id="datatable-default">
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>user name</th>
+					<th>email</th>
+					<th>active</th>
+					<th>last_login</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for customer in customers %}
+				{% if not customer.user.is_admin and customer.user.is_active %}
+				<tr class="gradeX">
+					<td>{{forloop.counter0}}</td>
+					<td>{{customer.user.full_name}}</td>
+					<td><b>{{customer.email}}</b></td>
+					<td>{% if customer.user.is_active %}
+						<button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Active</button>
+						{% endif %}</td>
+					<td>
+						{% if customer.user.last_login is not None %}
+							{{customer.user.last_login}}
+						{% else %}
+							not yet connected
+						{% endif %}
+					</td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</section>
 
-			{% endfor %}
 
-		</tbody>
-	</table>
-</div>
+<section class="panel">
+	<header class="panel-heading">
+		<div class="panel-actions">
+			<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+			<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+		</div>
+
+		<h2 class="panel-title">Inctivated users</h2>
+	</header>
+	<div class="panel-body">
+		<table class="table table-bordered table-striped mb-none" id="datatable">
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>user name</th>
+					<th>email</th>
+					<th>active</th>
+					<th>last_login</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for customer in customers %}
+				{% if not customer.user.is_admin and not customer.user.is_active %}
+				<tr class="gradeX">
+					<td>{{forloop.counter}}</td>
+					<td>{{customer.user.full_name}}</td>
+					<td><b>{{customer.email}}</b></td>
+					<td>{% if not customer.user.is_active %}
+						<button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">pending...</button>
+						{% endif %}</td>
+					<td>
+						{% if user.last_login is None  %}
+									{{customer.user.last_login}}
+						{% else %}
+								not activated yet
+						{% endif %}
+
+					</td>
+
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</section>
+
+
+
+
 {% endblock %}

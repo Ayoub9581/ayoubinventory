@@ -1,57 +1,201 @@
-{% extends "base.html" %}
-
+{% extends 'base2.html' %}
+{% load staticfiles %}
 
 {% block content %}
+<main class="main">
+	<nav aria-label="breadcrumb" class="breadcrumb-nav">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index-2.html"><i class="icon-home"></i></a></li>
+				<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+			</ol>
+		</div><!-- End .container -->
+	</nav>
 
-<div class="contact-page">
-	<div class="row">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 order-lg-last dashboard-content">
+				<h2> update personal Information</h2>
 
-		<div class="col-md-9 contact-form">
-			<form class="register-form" method='POST' action=''> {% csrf_token %}
-				{% if next_url %}
-				<input type='hidden' name='next' value='{{ next_url }}' />
-				{% endif %}
-				<div class="">
-					{% if title %}{{ title }}{% endif %}
-				</div>
-
-				<div class="col-md-4 ">
+				<form method="POST" action=""> {% csrf_token %}
+					{% if next_url %}
+					<input type='hidden' name='next' value='{{ next_url }}' />
+					{% endif %}
+					<div class="">
+						{% if title %}{% endif %}
+					</div>
 					<div class="form-group">
-						<!-- <label class="info-title" for="exampleInputName">Full name <span>*</span></label> -->
-						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
 						{{form.as_p}}
-					</div>
-				</div>
+					</div><!-- End .form-group -->
 
-				<div class="col-md-4 ">
 					<div class="form-group">
-						<label class="info-title" for="exampleInputName">Cannot Change Email</label>
-						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
-						<input type='text' id='email' class='form-control unicase-form-control' value='{{ request.user.email }}' disabled="disabled" />
-						<!-- <span class='help-text'>Cannot change email</span><br /> -->
-					</div>
-				</div>
+						<label for="acc-password">Cannot Change Email</label>
+						<input type="email" value="{{ request.user.email }}" class="form-control" id="acc-password" name="acc-password" disabled>
 
-				<div class="col-md-4 ">
-					<div class="form-group">
-						<label class="info-title" for="exampleInputName">Cannot Change Email</label>
-						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
-						<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Save changes</button>
-						<!-- <span class='help-text'>Cannot change email</span><br /> -->
-					</div>
-				</div>
+					</div><!-- End .form-group -->
+					<div class="mb-2"></div><!-- margin -->
 
-				<div class="col-md-4 ">
-					<div class="form-group">
-						<!-- <label class="info-title" for="exampleInputName">Change password change</label> -->
-						<!-- <input type="text" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder=""> -->
-						<a href='{% url "password_change" %}'>Change Password</a>
-						<!-- <span class='help-text'>Cannot change email</span><br /> -->
-					</div>
-				</div>
-			</form>
+
+
+					<div class="form-footer">
+						<a href="#"><i class="icon-angle-double-left"></i>Back</a>
+
+						<div class="form-footer-right">
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</div><!-- End .form-footer -->
+				</form>
+			</div><!-- End .col-lg-9 -->
+
+			<aside class="sidebar col-lg-3">
+				<div class="widget widget-dashboard">
+					<h3 class="widget-title">My Account</h3>
+
+					<ul class="list">
+						<li class="active"><a href="#">Account Dashboard</a></li>
+						<li><a href="#">Account Information</a></li>
+						<li><a href="#">Address Book</a></li>
+						<li><a href="#">My Orders</a></li>
+						<li><a href="#">Billing Agreements</a></li>
+						<li><a href="#">Recurring Profiles</a></li>
+						<li><a href="#">My Product Reviews</a></li>
+						<li><a href="#">My Tags</a></li>
+						<li><a href="#">My Wishlist</a></li>
+						<li><a href="#">My Applications</a></li>
+						<li><a href="#">Newsletter Subscriptions</a></li>
+						<li><a href="#">My Downloadable Products</a></li>
+					</ul>
+				</div><!-- End .widget -->
+			</aside><!-- End .col-lg-3 -->
+		</div><!-- End .row -->
+	</div><!-- End .container -->
+
+	<div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->
+
+
+
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+<div class="mobile-menu-container">
+	<div class="mobile-menu-wrapper">
+		<span class="mobile-menu-close"><i class="icon-cancel"></i></span>
+		<nav class="mobile-nav">
+			<ul class="mobile-menu">
+				<li><a href="index-2.html">Home</a></li>
+				<li>
+					<a href="category.html">Categories</a>
+					<ul>
+						<li><a href="category-banner-full-width.html">Full Width Banner</a></li>
+						<li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
+						<li><a href="category-banner-boxed-image.html">Boxed Image Banner</a></li>
+						<li><a href="category-sidebar-left.html">Left Sidebar</a></li>
+						<li><a href="category-sidebar-right.html">Right Sidebar</a></li>
+						<li><a href="category-flex-grid.html">Product Flex Grid</a></li>
+						<li><a href="category-horizontal-filter1.html">Horizontal Filter 1</a></li>
+						<li><a href="category-horizontal-filter2.html">Horizontal Filter 2</a></li>
+						<li><a href="#">Product List Item Types</a></li>
+						<li><a href="category-infinite-scroll.html">Ajax Infinite Scroll<span class="tip tip-new">New</span></a></li>
+						<li><a href="category-3col.html">3 Columns Products</a></li>
+						<li><a href="category-4col.html">4 Columns Products</a></li>
+						<li><a href="category-5col.html">5 Columns Products</a></li>
+						<li><a href="category-6col.html">6 Columns Products</a></li>
+						<li><a href="category-7col.html">7 Columns Products</a></li>
+						<li><a href="category-8col.html">8 Columns Products</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="product.html">Products</a>
+					<ul>
+						<li>
+							<a href="#">Variations</a>
+							<ul>
+								<li><a href="product.html">Horizontal Thumbnails</a></li>
+								<li><a href="product-full-width.html">Vertical Thumbnails<span class="tip tip-hot">Hot!</span></a></li>
+								<li><a href="product.html">Inner Zoom</a></li>
+								<li><a href="product-addcart-sticky.html">Addtocart Sticky</a></li>
+								<li><a href="product-sidebar-left.html">Accordion Tabs</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Variations</a>
+							<ul>
+								<li><a href="product-sticky-tab.html">Sticky Tabs</a></li>
+								<li><a href="product-simple.html">Simple Product</a></li>
+								<li><a href="product-sidebar-left.html">With Left Sidebar</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Product Layout Types</a>
+							<ul>
+								<li><a href="product.html">Default Layout</a></li>
+								<li><a href="product-extended-layout.html">Extended Layout</a></li>
+								<li><a href="product-full-width.html">Full Width Layout</a></li>
+								<li><a href="product-grid-layout.html">Grid Images Layout</a></li>
+								<li><a href="product-sticky-both.html">Sticky Both Side Info<span class="tip tip-hot">Hot!</span></a></li>
+								<li><a href="product-sticky-info.html">Sticky Right Side Info</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Pages<span class="tip tip-hot">Hot!</span></a>
+					<ul>
+						<li><a href="cart.html">Shopping Cart</a></li>
+						<li>
+							<a href="#">Checkout</a>
+							<ul>
+								<li><a href="checkout-shipping.html">Checkout Shipping</a></li>
+								<li><a href="checkout-shipping-2.html">Checkout Shipping 2</a></li>
+								<li><a href="checkout-review.html">Checkout Review</a></li>
+							</ul>
+						</li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="#" class="login-link">Login</a></li>
+						<li><a href="forgot-password.html">Forgot Password</a></li>
+					</ul>
+				</li>
+				<li><a href="blog.html">Blog</a>
+					<ul>
+						<li><a href="single.html">Blog Post</a></li>
+					</ul>
+				</li>
+				<li><a href="contact.html">Contact Us</a></li>
+				<li><a href="#">Special Offer!<span class="tip tip-hot">Hot!</span></a></li>
+				<li><a href="#">Buy Porto!</a></li>
+			</ul>
+		</nav><!-- End .mobile-nav -->
+
+		<div class="social-icons">
+			<a href="#" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
+			<a href="#" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
+			<a href="#" class="social-icon" target="_blank"><i class="icon-instagram"></i></a>
+		</div><!-- End .social-icons -->
+	</div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->
+
+<div class="newsletter-popup mfp-hide" id="newsletter-popup-form" style="background-image: url(assets/images/newsletter_popup_bg.jpg' %})">
+	<div class="newsletter-popup-content">
+		<img src="{% static 'porto/assets/images/logo-black.png' %}" alt="Logo" class="logo-newsletter">
+		<h2>BE THE FIRST TO KNOW</h2>
+		<p>Subscribe to the Porto eCommerce newsletter to receive timely updates from your favorite products.</p>
+		<form action="#">
+			<div class="input-group">
+				<input type="email" class="form-control" id="newsletter-email" name="newsletter-email" placeholder="Email address" required>
+				<input type="submit" class="btn" value="Go!">
+			</div><!-- End .from-group -->
+		</form>
+		<div class="newsletter-subscribe">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" value="1">
+					Don't show this popup again
+				</label>
+			</div>
 		</div>
-	</div>
-</div>
+	</div><!-- End .newsletter-popup-content -->
+</div><!-- End .newsletter-popup -->
+
+<a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
 {% endblock %}

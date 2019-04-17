@@ -1,111 +1,388 @@
-{% extends 'base.html' %}
-	{% load staticfiles %}
+{% extends 'base2.html' %}
+{% load staticfiles %}
+
 {% block content %}
-{% include 'base/sidebar.html' with category=instance.category %}
-<div class='col-md-9'>
-	<div id="category" class="category-carousel hidden-xs">
-		<div class="item">
-			<div class="image"> <img src="{% static 'assets/images/banners/10.png' %}" alt="" class="img-responsive"> </div>
-			<div class="container-fluid">
-				<div class="caption vertical-top text-left">
-					<div class="big-text"> {{instance.category}} </div>
-					<div class="excerpt hidden-sm hidden-md">
-						<p>Deal Of The Week
-					</div>
-					<div class="excerpt-normal hidden-sm hidden-md"> Up to 20$ OFF selected Appel iPhones </div>
-				</div>
-				<!-- /.caption -->
-			</div>
-			<!-- /.container-fluid -->
-		</div>
-	</div>
+				<main class="main">
 
-	<div class="clearfix filters-container m-t-10">
-		<div class="row">
-			<div class="col col-sm-6 col-md-2">
-				<div class="filter-tabs">
-					<ul id="filter-tabs" class="nav nav-tabs nav-tab-box nav-tab-fa-icon">
-						<li class="active"> <a data-toggle="tab" href="#grid-container"><i class="icon fa fa-th-large"></i>Grid</a> </li>
-						<li><a data-toggle="tab" href="#list-container"><i class="icon fa fa-th-list"></i>List</a></li>
-					</ul>
-				</div>
-				<!-- /.filter-tabs -->
-			</div>
-			<!-- /.col -->
-			<div class="col col-sm-12 col-md-6">
+						<nav aria-label="breadcrumb" class="breadcrumb-nav">
+								<div class="container">
+										<ol class="breadcrumb">
+												<li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon-home"></i></a></li>
+												<li class="breadcrumb-item"><a href="{{instance.category.get_absolute_url}}">{{instance.category}}</a></li>
+												<li class="breadcrumb-item active" aria-current="page">{{instance}}</li>
+										</ol>
+								</div><!-- End .container -->
+						</nav>
 
-				<!-- /.col -->
-				<div class="col col-sm-3 col-md-6 no-padding">
+						<div class="container">
+								<div class="row">
+										<div class="col-lg-9">
+												<div class="boxed-slider owl-carousel owl-carousel-lazy owl-theme owl-theme-light mb-2">
+														<div class="category-slide">
+																<div class="slide-bg owl-lazy"  data-src="{% static 'porto/assets/images/banners/banner-top.jpg' %}"></div><!-- End .slide-bg -->
+																<div class="banner boxed-slide-content offset-1">
+																		<h2 class="banner-subtitle">check out over <span>200+</span></h2>
+																		<h1 class="banner-title">
+																				INCREDIBLE deals
+																		</h1>
+																		<a href="#" class="btn btn-dark">Shop Now</a>
+																</div><!-- End .home-slide-content -->
+														</div><!-- End .home-slide -->
 
-					<!-- /.lbl-cnt -->
-				</div>
-				<!-- /.col -->
-			</div>
+														<div class="category-slide">
+																<div class="slide-bg owl-lazy"  data-src="{% static 'porto/assets/images/banners/banner-top.jpg' %}"></div><!-- End .slide-bg -->
+																<div class="banner boxed-slide-content offset-1">
+																		<h2 class="banner-subtitle">check out over <span>200+</span></h2>
+																		<h1 class="banner-title">
+																				INCREDIBLE deals
+																		</h1>
+																		<a href="#" class="btn btn-dark">Shop Now</a>
+																</div><!-- End .home-slide-content -->
+														</div><!-- End .home-slide -->
+												</div><!-- End .home-slider -->
 
-			<!-- /.col -->
-		</div>
-		<!-- /.row -->
-	</div>
+												<nav class="toolbox">
+														<div class="toolbox-left">
+																<div class="toolbox-item toolbox-sort">
+																		<div class="select-custom">
+																				<select name="orderby" class="form-control">
+																						<option value="menu_order" selected="selected">Default sorting</option>
+																						<option value="popularity">Sort by popularity</option>
+																						<option value="rating">Sort by average rating</option>
+																						<option value="date">Sort by newness</option>
+																						<option value="price">Sort by price: low to high</option>
+																						<option value="price-desc">Sort by price: high to low</option>
+																				</select>
+																		</div><!-- End .select-custom -->
+
+																		<a href="#" class="sorter-btn" title="Set Ascending Direction"><span class="sr-only">Set Ascending Direction</span></a>
+																</div><!-- End .toolbox-item -->
+														</div><!-- End .toolbox-left -->
+
+														<div class="toolbox-item toolbox-show">
+																<label>Showing 1–9 of 60 results</label>
+														</div><!-- End .toolbox-item -->
+
+														<div class="layout-modes">
+																<a href="category.html" class="layout-btn btn-grid active" title="Grid">
+																		<i class="icon-mode-grid"></i>
+																</a>
+																<a href="category-list.html" class="layout-btn btn-list" title="List">
+																		<i class="icon-mode-list"></i>
+																</a>
+														</div><!-- End .layout-modes -->
+												</nav>
+
+												<div class="row row-sm">
+														{% for ins in instance.product_set.all %}
+														<div class="col-6 col-md-4">
+																<div class="product">
+																		<figure class="product-image-container">
+																				<a href="{{ins.get_absolute_url}}" class="product-image">
+																						<img src="{{ins.image.url}}" alt="product">
+																				</a>
+																				<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
+																		</figure>
+																		<div class="product-details">
+																				<div class="ratings-container">
+																						<div class="product-ratings">
+																								<span class="ratings" style="width:80%"></span><!-- End .ratings -->
+																						</div><!-- End .product-ratings -->
+																				</div><!-- End .product-container -->
+																				<h2 class="product-title">
+																						<a href="product.html">{{ins.title}}</a>
+																				</h2>
+																				<div class="price-box">
+																						<span class="product-price">${{ins.price}}</span>
+																				</div><!-- End .price-box -->
+
+																				<div class="product-action">
+																						<a href="#" class="paction add-wishlist" title="Add to Wishlist">
+																								<span>Add to Wishlist</span>
+																						</a>
+
+																						<a href="product.html" class="paction add-cart" title="Add to Cart">
+																								<span>Add to Cart</span>
+																						</a>
+
+																						<a href="#" class="paction add-compare" title="Add to Compare">
+																								<span>Add to Compare</span>
+																						</a>
+																				</div><!-- End .product-action -->
+																		</div><!-- End .product-details -->
+																</div><!-- End .product -->
+														</div><!-- End .col-md-4 -->
+														{% endfor %}
 
 
-	<div class="search-result-container ">
-		<div id="myTabContent" class="tab-content category-list">
-			<div class="tab-pane active " id="grid-container">
-				<div class="category-product">
-					<div class="row">
 
-						{% for ins in instance.product_set.all %}
-						{% include 'products/snippets/card.html' with instance=ins %}
+												</div><!-- End .row -->
 
-						{% empty %}
-							there are no products for this category <b>{{instance}}</b>
-						{% endfor %}
+												<nav class="toolbox toolbox-pagination">
+														<div class="toolbox-item toolbox-show">
+																<label>Showing 1–9 of 60 results</label>
+														</div><!-- End .toolbox-item -->
+
+														<ul class="pagination">
+																<li class="page-item disabled">
+																		<a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
+																</li>
+																<li class="page-item active">
+																		<a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+																</li>
+																<li class="page-item"><a class="page-link" href="#">2</a></li>
+																<li class="page-item"><a class="page-link" href="#">3</a></li>
+																<li class="page-item"><a class="page-link" href="#">4</a></li>
+																<li class="page-item"><span>...</span></li>
+																<li class="page-item"><a class="page-link" href="#">15</a></li>
+																<li class="page-item">
+																		<a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
+																</li>
+														</ul>
+												</nav>
+										</div><!-- End .col-lg-9 -->
+
+										<aside class="sidebar-shop col-lg-3 order-lg-first">
+												<div class="sidebar-wrapper">
+														<div class="widget">
+																<h3 class="">
+																	<center>	<a data-toggle="collapse" href="#widget-body-1" role="button" aria-expanded="true" aria-controls="widget-body-1">{{instance}}</a></center>
+																</h3>
+														</div><!-- End .widget -->
+
+														<div class="widget">
+																<h3 class="widget-title">
+																		<a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true" aria-controls="widget-body-2">Price</a>
+																</h3>
+
+																<div class="collapse show" id="widget-body-2">
+																		<div class="widget-body">
+																				<form action="#">
+																						<div class="price-slider-wrapper">
+																								<div id="price-slider"></div><!-- End #price-slider -->
+																						</div><!-- End .price-slider-wrapper -->
+
+																						<div class="filter-price-action">
+																								<button type="submit" class="btn btn-primary">Filter</button>
+
+																								<div class="filter-price-text">
+																										<span id="filter-price-range"></span>
+																								</div><!-- End .filter-price-text -->
+																						</div><!-- End .filter-price-action -->
+																				</form>
+																		</div><!-- End .widget-body -->
+																</div><!-- End .collapse -->
+														</div><!-- End .widget -->
+
+														<div class="widget">
+																<h3 class="widget-title">
+																		<a data-toggle="collapse" href="#widget-body-3" role="button" aria-expanded="true" aria-controls="widget-body-3">Size</a>
+																</h3>
+
+																<div class="collapse show" id="widget-body-3">
+																		<div class="widget-body">
+																				<ul class="config-size-list">
+																						<li><a href="#">S</a></li>
+																						<li class="active"><a href="#">M</a></li>
+																						<li><a href="#">L</a></li>
+																						<li><a href="#">XL</a></li>
+																						<li><a href="#">2XL</a></li>
+																						<li><a href="#">3XL</a></li>
+																				</ul>
+																		</div><!-- End .widget-body -->
+																</div><!-- End .collapse -->
+														</div><!-- End .widget -->
+
+														<div class="widget">
+																<h3 class="widget-title">
+																		<a data-toggle="collapse" href="#widget-body-4" role="button" aria-expanded="true" aria-controls="widget-body-4">Brands</a>
+																</h3>
+
+																<div class="collapse show" id="widget-body-4">
+																		<div class="widget-body">
+																				<ul class="cat-list">
+																						<li><a href="#">Adidas <span>18</span></a></li>
+																						<li><a href="#">Camel <span>22</span></a></li>
+																						<li><a href="#">Seiko <span>05</span></a></li>
+																						<li><a href="#">Samsung Galaxy <span>68</span></a></li>
+																						<li><a href="#">Sony <span>03</span></a></li>
+																				</ul>
+																		</div><!-- End .widget-body -->
+																</div><!-- End .collapse -->
+														</div><!-- End .widget -->
 
 
-					</div>
-				</div>
-			</div>
+														<div class="widget widget-featured">
+																<h3 class="widget-title">Featured Products</h3>
 
-		</div>
-		<!-- <div class="row">
-			{% if listings.has_other_pages %}
-			<ul class="pagination">
-				{% if listings.has_previous %}
-				<li class="page-item">
-					<a class="page-link" href="?page={{listings.previous_page_number}}" tabindex="-1">&laquo;</a>
-				</li>
-				{% else %}
-				<li class="page-item disabled">
-					<a class="page-link" tabindex="-1">&laquo;</a>
-				</li>
-				{% endif %}
+																<div class="widget-body">
+																		<div class="owl-carousel widget-featured-products">
+																				<div class="featured-col">
+																						<div class="product product-sm">
+																								<figure class="product-image-container">
+																										<a href="product.html" class="product-image">
+																												<img src="{% static 'porto/assets/images/products/small/product-1.jpg' %}" alt="product">
+																										</a>
+																								</figure>
+																								<div class="product-details">
+																										<h2 class="product-title">
+																												<a href="product.html">Ring</a>
+																										</h2>
+																										<div class="ratings-container">
+																												<div class="product-ratings">
+																														<span class="ratings" style="width:80%"></span><!-- End .ratings -->
+																												</div><!-- End .product-ratings -->
+																										</div><!-- End .product-container -->
+																										<div class="price-box">
+																												<span class="product-price">$45.00</span>
+																										</div><!-- End .price-box -->
+																								</div><!-- End .product-details -->
+																						</div><!-- End .product -->
 
-				{% for i in listings.paginator.page_range %}
-				{% if listings.number == i %}
-				<li class="page-item active">
-					<a class="page-link">{{i}}</a>
-				</li> {% else %}
-				<li class="page-item">
-					<a class="page-link" href="?page={{i}}" tabindex="-1">{{i}}</a>
-				</li>
-				{% endif %}
-				{% endfor %}
+																						<div class="product product-sm">
+																								<figure class="product-image-container">
+																										<a href="product.html" class="product-image">
+																												<img src="{% static 'porto/assets/images/products/small/product-2.jpg' %}" alt="product">
+																										</a>
+																								</figure>
+																								<div class="product-details">
+																										<h2 class="product-title">
+																												<a href="product.html">Headphone</a>
+																										</h2>
+																										<div class="ratings-container">
+																												<div class="product-ratings">
+																														<span class="ratings" style="width:20%"></span><!-- End .ratings -->
+																												</div><!-- End .product-ratings -->
+																										</div><!-- End .product-container -->
+																										<div class="price-box">
+																												<span class="old-price">$60.00</span>
+																												<span class="product-price">$45.00</span>
+																										</div><!-- End .price-box -->
+																								</div><!-- End .product-details -->
+																						</div><!-- End .product -->
 
-				{% if listings.has_next %}
-				<li class="page-item">
-					<a class="page-link" href="?page={{listings.next_page_number}}" tabindex="-1">&raquo; </a>
-				</li>
-				{% else %}
-				<li class="page-item disabled">
-					<a class="page-link" tabindex="-1">&laquo;</a>
-				</li>
-				{% endif %}
+																						<div class="product product-sm">
+																								<figure class="product-image-container">
+																										<a href="product.html" class="product-image">
+																												<img src="{% static 'porto/assets/images/products/small/product-3.jpg' %}" alt="product">
+																										</a>
+																								</figure>
+																								<div class="product-details">
+																										<h2 class="product-title">
+																												<a href="product.html">Shoes</a>
+																										</h2>
+																										<div class="ratings-container">
+																												<div class="product-ratings">
+																														<span class="ratings" style="width:100%"></span><!-- End .ratings -->
+																												</div><!-- End .product-ratings -->
+																										</div><!-- End .product-container -->
+																										<div class="price-box">
+																												<span class="product-price">$50.00</span>
+																										</div><!-- End .price-box -->
+																								</div><!-- End .product-details -->
+																						</div><!-- End .product -->
+																				</div><!-- End .featured-col -->
 
 
-			</ul>
-			{% endif %}
-		</div> -->
+																		</div><!-- End .widget-featured-slider -->
+																</div><!-- End .widget-body -->
+														</div><!-- End .widget -->
 
-	</div>
+												</div><!-- End .sidebar-wrapper -->
+										</aside><!-- End .col-lg-3 -->
+								</div><!-- End .row -->
+						</div><!-- End .container -->
+
+						<div class="mb-5"></div><!-- margin -->
+				</main><!-- End .main -->
+		</div><!-- End .page-wrapper -->
+
+		<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+		<div class="mobile-menu-container">
+				<div class="mobile-menu-wrapper">
+						<span class="mobile-menu-close"><i class="icon-cancel"></i></span>
+						<nav class="mobile-nav">
+								<ul class="mobile-menu">
+										<li><a href="index-2.html">Home</a></li>
+										<li>
+												<!-- <a href="category.html">Categories</a> -->
+												<ul>
+													{% for ins in instance.category_set.all %}
+													<li><a href="{{ins.get_absolute_url}}">{{ins}}</a></li>
+													{% endfor %}
+												</ul>
+										</li>
+										<li>
+												<a href="product.html">Products</a>
+												<ul>
+														<li>
+																<a href="#">Variations</a>
+																<ul>
+																		<li><a href="product.html">Horizontal Thumbnails</a></li>
+																		<li><a href="product-full-width.html">Vertical Thumbnails<span class="tip tip-hot">Hot!</span></a></li>
+																		<li><a href="product.html">Inner Zoom</a></li>
+																		<li><a href="product-addcart-sticky.html">Addtocart Sticky</a></li>
+																		<li><a href="product-sidebar-left.html">Accordion Tabs</a></li>
+																</ul>
+														</li>
+														<li>
+																<a href="#">Variations</a>
+																<ul>
+																		<li><a href="product-sticky-tab.html">Sticky Tabs</a></li>
+																		<li><a href="product-simple.html">Simple Product</a></li>
+																		<li><a href="product-sidebar-left.html">With Left Sidebar</a></li>
+																</ul>
+														</li>
+														<li>
+																<a href="#">Product Layout Types</a>
+																<ul>
+																		<li><a href="product.html">Default Layout</a></li>
+																		<li><a href="product-extended-layout.html">Extended Layout</a></li>
+																		<li><a href="product-full-width.html">Full Width Layout</a></li>
+																		<li><a href="product-grid-layout.html">Grid Images Layout</a></li>
+																		<li><a href="product-sticky-both.html">Sticky Both Side Info<span class="tip tip-hot">Hot!</span></a></li>
+																		<li><a href="product-sticky-info.html">Sticky Right Side Info</a></li>
+																</ul>
+														</li>
+												</ul>
+										</li>
+										<li>
+												<a href="#">Pages<span class="tip tip-hot">Hot!</span></a>
+												<ul>
+														<li><a href="cart.html">Shopping Cart</a></li>
+														<li>
+																<a href="#">Checkout</a>
+																<ul>
+																		<li><a href="checkout-shipping.html">Checkout Shipping</a></li>
+																		<li><a href="checkout-shipping-2.html">Checkout Shipping 2</a></li>
+																		<li><a href="checkout-review.html">Checkout Review</a></li>
+																</ul>
+														</li>
+														<li><a href="about.html">About</a></li>
+														<li><a href="#" class="login-link">Login</a></li>
+														<li><a href="forgot-password.html">Forgot Password</a></li>
+												</ul>
+										</li>
+										<li><a href="blog.html">Blog</a>
+												<ul>
+														<li><a href="single.html">Blog Post</a></li>
+												</ul>
+										</li>
+										<li><a href="contact.html">Contact Us</a></li>
+										<li><a href="#">Buy Porto!</a></li>
+								</ul>
+						</nav><!-- End .mobile-nav -->
+
+						<div class="social-icons">
+								<a href="#" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
+								<a href="#" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
+								<a href="#" class="social-icon" target="_blank"><i class="icon-instagram"></i></a>
+						</div><!-- End .social-icons -->
+				</div><!-- End .mobile-menu-wrapper -->
+		</div><!-- End .mobile-menu-container -->
+
+
+		<a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
 {% endblock %}

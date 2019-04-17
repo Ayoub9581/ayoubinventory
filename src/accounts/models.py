@@ -12,6 +12,9 @@ from django.contrib.auth.models import (
 from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.utils import timezone
+from django.core.validators import RegexValidator
+
+USERNAME_REGEX = '^[a-zA-Z0-9.@+-]*$'
 
 from ecommerce.utils import random_string_generator, unique_key_generator
 

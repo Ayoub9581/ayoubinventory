@@ -1,7 +1,9 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
-
+{% load staticfiles %}
 {% block content %}
+
+<!-- User is in system Or No -->
 {% if not billing_profile %}
 <div class="sign-in-page">
 	<div class='row text-center'>
@@ -20,24 +22,26 @@
 </div>
 
 {% else %}
-
+<!-- Check if user  has a shipping address prfile or not -->
 {% if not object.shipping_address and shipping_address_required %}
 
 <div class='row'>
 	<div class='col-12'>
-		<p class='lead'>Shipping Address</p>
+		<!-- <p class='lead'>Shipping Address</p> -->
+		<ul class="checkout-progress-bar">
+			<li class="active">
+				<span>Shipping address</span>
+			</li>
+			<li>
+				<span>billing address;</span>
+			</li>
+		</ul>
 		<hr />
 	</div>
 	<div class='col-6'>
 
-
-
-
 		{% url "checkout_address_create" as checkout_address_create %}
 		{% include 'addresses/form1.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_create address_type='shipping' %}'
-
-
-
 	</div>
 	<div class='col-6'>
 		{% url 'checkout_address_reuse' as checkout_address_reuse %}
@@ -49,7 +53,27 @@
 {% elif not object.billing_address %}
 <div class='row'>
 	<div class='col-12'>
-		<p class='lead'>Billing Address</p>
+		<main class="main">
+			<nav aria-label="breadcrumb" class="breadcrumb-nav">
+				<div class="container">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index-2.html"><i class="icon-home"></i></a></li>
+						<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+					</ol>
+				</div><!-- End .container -->
+			</nav>
+			<ul class="checkout-progress-bar">
+				<li class="active">
+					<span>Shipping address</span>
+				</li>
+				<li class="active">
+					<span>Billing address</span>
+				</li>
+				<li>
+					<span>payment Method</span>
+				</li>
+			</ul>
+		</main>
 		<hr />
 	</div>
 	<div class='col-6'>
@@ -66,154 +90,183 @@
 </div>
 {% else %}
 {% if not has_card %}
-<!-- enter credit card here -->
-<div class='stripe-payment-form' data-token="{{publish_key}}" data-next-url='{{ request.build_absolute_uri }}' data-btn-title='Add Payment Method'></div>
-
+<div class="container">
+	<ul class="checkout-progress-bar">
+		<li class="active">
+			<span>Shipping address</span>
+		</li>
+		<li class="active">
+			<span>Billing address</span>
+		</li>
+		<li class="active">
+			<span>payment Method</span>
+		</li>
+		<li>
+			<span>Finalize checkout</span>
+		</li>
+	</ul <!-- enter credit card here -->
+	<div class='stripe-payment-form' data-token="{{publish_key}}" data-next-url='{{ request.build_absolute_uri }}' data-btn-title='Add Payment Method'></div>
+</div>
 {% else %}
-<div class="body-content">
-	<div class="container">
-		<div class="checkout-box ">
-			<div class="row">
-				<div class="col-md-8">
-					<div class="panel-group checkout-steps" id="accordion">
+<div class="container">
+	<center>
+	<ul class="checkout-progress-bar">
+		<li class="active">
+			<span>Shipping address</span>
+		</li>
+		<li class="active">
+			<span>Billing address</span>
+		</li>
+		<li class="active">
+			<span>payment Method</span>
+		</li>
+		<li class="active">
+			<span>Finalize checkout</span>
+		</li>
+	</ul>
+	</center>
+	 <div class="row">
+	<div class="col-lg-8">
+		<ul class="checkout-steps">
+			<li>
+				<h2 class="step-title">Shipping Address</h2>
 
-						<!-- checkout-step-01  -->
-						<!-- checkout-step-02  -->
-						<div class="panel panel-default checkout-step-02">
-							<div class="panel-heading">
-								<h4 class="unicase-checkout-title">
-									<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseTwo">
-										<span>2</span>Billing Information
+				<div class="shipping-step-addresses">
+					<div class="shipping-address-box active">
+						<a href="#" class="btn btn-block btn-primary">Shipping Address </a>
+						<address>
+							{{ object.billing_address_final }}
+						</address>
+
+						<div class="address-box-action clearfix">
+							<a href="#" class="btn btn-sm btn-link">
+								Edit
+							</a>
+
+							<a href="#" class="btn btn-sm btn-outline-secondary float-right">
+								Ship Here
+							</a>
+						</div><!-- End .address-box-action -->
+
+					</div><!-- End .shipping-address-box -->
+					<div class="shipping-address-box active">
+						<a href="#" class="btn btn-block btn-primary">Billing Address </a>
+						<address>
+							{{ object.shipping_address_final }}
+						</address>
+
+						<div class="address-box-action clearfix">
+							<a href="#" class="btn btn-sm btn-link">
+								Edit
+							</a>
+
+							<a href="#" class="btn btn-sm btn-outline-secondary float-right">
+								Ship Here
+							</a>
+						</div><!-- End .address-box-action -->
+					</div><!-- End .shipping-address-box -->
+					<div class="shipping-address-box active">
+						<a href="#" class="btn btn-block btn-primary">SHIPPING METHOD</a>
+						<address>
+							<p>Cart Total: {{ object.cart.total }}</p>
+							<p>Shipping Total: {{ object.shipping_total }}</p>
+						</address>
+
+						<div class="address-box-action clearfix">
+							<a href="#" class="btn btn-sm btn-link">
+								Edit
+							</a>
+
+							<a href="#" class="btn btn-sm btn-outline-secondary float-right">
+								Ship Here
+							</a>
+						</div><!-- End .address-box-action -->
+					</div><!-- End .shipping-address-box -->
+					<div class="shipping-address-box active">
+						<a href="#" class="btn btn-block btn-primary">PAYMENT INFORMATION</a>
+						<address>
+							<p>Payment Method: {{ billing_profile.default_card }} (<a href="{{ billing_profile.get_payment_method_url }}?next={{ request.build_absolute_uri }}">Change</a>)</p>
+						</address>
+
+						<div class="address-box-action clearfix">
+							<a href="#" class="btn btn-sm btn-link">
+								Edit
+							</a>
+
+							<a href="#" class="btn btn-sm btn-outline-secondary float-right">
+								Ship Here
+							</a>
+						</div><!-- End .address-box-action -->
+					</div><!-- End .shipping-address-box -->
+					<div class="shipping-address-box active">
+						<a href="#" class="btn btn-block btn-primary">ORDER REVIEW</a>
+						<address>
+							<p>Order Total: {{ object.total }}</p>
+							<p>Cart Items:<b> {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</b></p>
+						</address>
+
+						<div class="address-box-action clearfix">
+							<a href="#" class="btn btn-sm btn-link">
+								Edit
+							</a>
+
+							<a href="#" class="btn btn-sm btn-outline-secondary float-right">
+								Ship Here
+							</a>
+						</div><!-- End .address-box-action -->
+					</div><!-- End .shipping-address-box -->
+				</div><!-- End .shipping-step-addresses -->
+				<form method="POST" action=""> {% csrf_token %}
+				<button class="btn  btn-outline-primary "  type="submit"> place older</button>
+				</form>
+			</li>
+		</ul>
+	</div><!-- End .col-lg-8 -->
+
+	<div class="col-lg-4">
+		<div class="order-summary">
+			<h3>Summary</h3>
+
+			<h4>
+				<a data-toggle="collapse" href="#order-cart-section" class="collapsed" role="button" aria-expanded="false" aria-controls="order-cart-section">
+					{% if object.cart.products.count == 1 %}
+					{{object.cart.products.count}} product in Cart
+					{% else %}
+					{{object.cart.products.count}} products in Cart
+					{% endif %}
+
+				</a>
+			</h4>
+
+			<div class="collapse" id="order-cart-section">
+				<table class="table table-mini-cart">
+					<tbody>
+						{% for product in object.cart.products.all %}
+						<tr>
+							<td class="product-col">
+								<figure class="product-image-container">
+									<a href="product.html" class="product-image">
+										<img src="{{product.image.url}}" alt="product">
 									</a>
-								</h4>
-							</div>
-							<div id="collapseTwo" class="panel-collapse collapse">
-								<div class="panel-body">
-									{{ object.billing_address_final }}
+								</figure>
+								<div>
+									<h2 class="product-title">
+										<a href="{{product.get_absolute_url}}">{{ product }}</a>
+									</h2>
 								</div>
-							</div>
-						</div>
-						<!-- checkout-step-02  -->
+							</td>
+							<td class="price-col">${{product.price}}<td>
+						</tr>
+						{% if not forloop.last %} {% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div><!-- End #order-cart-section -->
+		</div><!-- End .order-summary -->
+	</div><!-- End .col-lg-4 -->
+</div><!-- End .row -->
+</div>
 
-						<!-- checkout-step-03  -->
-						<div class="panel panel-default checkout-step-03">
-							<div class="panel-heading">
-								<h4 class="unicase-checkout-title">
-									<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseThree">
-										<span>3</span>Shipping Information
-									</a>
-								</h4>
-							</div>
-							<div id="collapseThree" class="panel-collapse collapse">
-								<div class="panel-body">
-									{{ object.shipping_address_final }}
-								</div>
-							</div>
-						</div>
-						<!-- checkout-step-03  -->
-
-						<!-- checkout-step-04  -->
-						<div class="panel panel-default checkout-step-04">
-							<div class="panel-heading">
-								<h4 class="unicase-checkout-title">
-									<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFour">
-										<span>4</span>Shipping Method
-									</a>
-								</h4>
-							</div>
-							<div id="collapseFour" class="panel-collapse collapse">
-								<div class="panel-body">
-									<p>Cart Total: {{ object.cart.total }}</p>
-									<p>Shipping Total: {{ object.shipping_total }}</p>
-								</div>
-							</div>
-						</div>
-						<!-- checkout-step-04  -->
-
-						<!-- checkout-step-05  -->
-						<div class="panel panel-default checkout-step-05">
-							<div class="panel-heading">
-								<h4 class="unicase-checkout-title">
-									<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFive">
-										<span>5</span>Payment Information
-									</a>
-								</h4>
-							</div>
-							<div id="collapseFive" class="panel-collapse collapse">
-								<div class="panel-body">
-									<p>Payment Method: {{ billing_profile.default_card }} (<a href="{{ billing_profile.get_payment_method_url }}?next={{ request.build_absolute_uri }}">Change</a>)</p>
-
-								</div>
-							</div>
-						</div>
-						<!-- checkout-step-05  -->
-
-						<!-- checkout-step-06  -->
-						<div class="panel panel-default checkout-step-06">
-							<div class="panel-heading">
-								<h4 class="unicase-checkout-title">
-									<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseSix">
-										<span>6</span>Order Review
-									</a>
-								</h4>
-							</div>
-							<div id="collapseSix" class="panel-collapse collapse">
-								<div class="panel-body">
-									<p>Order Total: {{ object.total }}</p>
-									<p>Cart Items:<b> {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</b></p>
-								</div>
-							</div>
-						</div>
-						<!-- checkout-step-06  -->
-
-					</div><!-- /.checkout-steps -->
-				</div>
-				<div class="col-md-4">
-					<!-- checkout-progress-sidebar -->
-					<div class="checkout-progress-sidebar ">
-						<div class="panel-group">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="unicase-checkout-title">Your Checkout Progress</h4>
-								</div>
-								<div class="">
-									<ul class="nav nav-checkout-progress list-unstyled">
-										<li><a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-check"></i>Billing Address</a></li>
-										<li><a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseThree"><i class="fa fa-check"></i>Shipping Address</a></li>
-										<li><a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFour"><i class="fa fa-check"></i>Shipping Method</a></li>
-										<li><a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFive"><i class="fa fa-check"></i>Payment Method</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- checkout-progress-sidebar -->
-				</div>
-				<div class="col-md-4">
-					<!-- checkout-progress-sidebar -->
-					<div class="checkout-progress-sidebar ">
-						<div class="panel-group">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="unicase-checkout-title">Finalize Checkout</h4>
-								</div>
-								<div class="">
-									<form class='form' method='POST' action="">{% csrf_token %}
-										<button type='submit' class='btn btn-success'>Checkout</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- checkout-progress-sidebar -->
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.checkout-box -->
-		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
-
-		<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
-	</div><!-- /.container -->
-</div><!-- /.body-content -->
 {% endif %}
 {% endif %}
 {% endif %}
@@ -221,17 +274,3 @@
 
 
 {% endblock %}
-
-
-<h1>Finalize Checkout</h1>
-<p>Cart Items: {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-<p>Shipping Address: {{ object.shipping_address_final }}</p>
-<p>Billing Address: {{ object.billing_address_final }}</p>
-<p>Payment Method: {{ billing_profile.default_card }} (<a href="{{ billing_profile.get_payment_method_url }}?next={{ request.build_absolute_uri }}">Change</a>)</p>
-<p>Cart Total: {{ object.cart.total }}</p>
-<p>Shipping Total: {{ object.shipping_total }}</p>
-<p>Order Total: {{ object.total }}</p>
-
-<form class='form' method='POST' action="">{% csrf_token %}
-	<button type='submit' class='btn btn-success'>Checkout</button>
-</form>

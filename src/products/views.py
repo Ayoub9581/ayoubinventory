@@ -72,14 +72,11 @@ def product_list_view(request):
 	paginator = Paginator(queryset, 18)
 	page =  request.GET.get('page')
 	page_listings = paginator.get_page(page)
-	# for c in categories:
-	# 	for  sub in c.subcategory_set.all():
-	# 		print('{}: {}'.format(c,sub))
-
 	context = {
 		'listings': page_listings,
 		'categories':categories,
 	}
+	print(categories)
 	return render(request, "products/list.html", context)
 
 

@@ -1,6 +1,44 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load staticfiles %}
 {% block content %}
+<main class="main">
+	<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+					<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="{% url 'account:home' %}"><i class="icon-home"></i></a></li>
+							<li class="breadcrumb-item active" aria-current="page">Adresses</li>
+					</ol>
+			</div><!-- End .container -->
+	</nav>
+	<div class="container">
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">address line 1</th>
+			<th scope="col">address line 2</th>
+			<th scope="col">country</th>
+			<th scope="col">type address</th>
+			<th scope="col">Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for obj in object_list %}
+		<tr>
+			<th scope="row">{{forloop.counter}}</th>
+			<td>{{obj.address_line_1}}</td>
+			<td>{{obj.address_line_2}}</td>
+			<td>{{obj.country}}</td>
+			<td>{{obj.get_address_type_display}}</td>
+			<td><a href="{{obj.get_absolute_url}}">edit</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+</main>
+{% endblock %}
+
 
 <div class="breadcrumb">
 	<div class="container">
@@ -104,37 +142,8 @@
 				{% endfor %}
 			</table>
 			<div class="col-md-12 outer-bottom-small m-t-20">
-			<a href='{% url "address-create" %}'>	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Create new address</button></a>
+				<a href='{% url "address-create" %}'> <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Create new address</button></a>
 			</div>
 		</div>
 	</div>
-</div>
-
-{% endblock %}
-
-
-<div class='row'>
-	<div class='col-12'>
-		<h1>Address{% if object_list.count > 1%}es{% endif %} <small><a href='{% url "address-create" %}'>Create New</a></small></h1>
-		<hr />
-	</div>
-</div>
-<div class='row'>
-	{% for obj in object_list %}
-	<div class='col-12 col-md-3 my-3'>
-		<div class="card">
-			<div class="card-body">
-				<h4 class="card-title">{{ obj }}</h4>
-				<small>{{ obj.get_address_type_display }}</small><br />
-				<br />
-				<h5>Address</h5>
-				{{ obj.get_address|linebreaks }}
-
-				<a href='{{ obj.get_absolute_url }}' class='btn btn-default'>Edit</a>
-			</div>
-		</div>
-	</div>
-	{% empty %}
-	<p class='lead text-center'><a href='{% url "address-create" %}'>Create New</a></p>
-	{% endfor %}
 </div>

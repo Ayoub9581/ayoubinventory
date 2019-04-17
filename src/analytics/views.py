@@ -13,7 +13,7 @@ from django.utils import  timezone
 from orders.models import Order
 from products.models import Product
 from billing.models import BillingProfile
-
+from accounts.models import User
 class SalesAjaxView(View):
 	def get(self, request, *args, **kwargs):
 		data = {}
@@ -68,12 +68,15 @@ class SalesView(LoginRequiredMixin, TemplateView):
 	def get_context_data(self, *args, **kwargs):
 		context = super(SalesView, self).get_context_data(*args, **kwargs)
 		qs = Order.objects.all().by_weeks_range(weeks_ago=10, number_of_weeks=10)
+
 		start_date = timezone.now().date() - datetime.timedelta(hours=24)
 		end_date = timezone.now().date() + datetime.timedelta(hours=12)
 		today_data = qs.by_range(start_date=start_date, end_date=end_date).get_sales_breakdown()
 		context['today'] = today_data
 		context['this_week'] = qs.by_weeks_range(weeks_ago=1, number_of_weeks=1).get_sales_breakdown()
 		context['last_four_weeks'] = qs.by_weeks_range(weeks_ago=5, number_of_weeks=4).get_sales_breakdown()
+		context['users']  = User.objects.all().filter(is_active=True).count()
+		context['orders'] = Order.objects.all().filter(status='paid').count()
 		return context
 
 def go_dashboard(request):

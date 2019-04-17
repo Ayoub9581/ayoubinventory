@@ -9,8 +9,8 @@ from semantics3 import Products
 
 from django.conf import settings
 
-SEMANTIC_PUBLIC =  getattr(settings, "API_KEY_SEMANTIC_PUBLIC", 'SEM3B18982BA1B811D6E25715F16AC28AAC7')
-SEMANTIC_SECRET =  getattr(settings, "API_KEY_SEMANTIC_SECRET", 'NjUyYTA3YTVkZjcyYTc5NjhkYzA5ODIyYWVmNGZlZjE')
+SEMANTIC_PUBLIC =  getattr(settings, "API_KEY_SEMANTIC_PUBLIC", 'SEM3C1D5CE7BEA296A1E40AB03108B1C585D')
+SEMANTIC_SECRET =  getattr(settings, "API_KEY_SEMANTIC_SECRET", 'Nzc2ZDc5NGVjZDZjNzhhNTJiNWRmMTE1ODFjYjMwMDY')
 
 
 def get_last_month_data(today):
@@ -101,10 +101,6 @@ def unique_order_id_generator(instance):
 
 
 def unique_slug_generator(instance, new_slug=None):
-	"""
-	This is for a Django project and it assumes your instance
-	has a model with a slug field and a title character (char) field.
-	"""
 	if new_slug is not None:
 		slug = new_slug
 	else:
@@ -127,12 +123,18 @@ def isUpcExist(code):
 	product = Products(SEMANTIC_PUBLIC ,SEMANTIC_SECRET)
 	product.products_field("upc",str(code))
 	results = product.get_products()
+	# a = ['CD','DVD', 'CD()']
+	# yes = results['results'][0]['format']
+	# count  = 0
+	# for x in range(1,len(a)):
+	# 	if(yes == a[x]):
+	# 		print('{} == {}'.format(a[:],yes))
+	# 		count += 1
+	# 	else:
+	# 		print('Error')
+
 	if results['results_count'] == 1:
-		# name = str(results['results'][0]['name'])
-		# price = str(results['results'][0]['sitedetails'][0]['latestoffers'][0]['price'])
-		# print("UPC : {} , name : {}, Price : {}".format(str(code),name,price))
 		return results, True
 	else:
 		print("not exist")
 		return results, False
-

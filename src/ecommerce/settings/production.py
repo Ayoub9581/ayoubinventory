@@ -43,7 +43,7 @@ ADMINS = MANAGERS
 DEBUG = True
 
 # ALLOWED_HOSTS = ['.pythonecommerce.com']
-ALLOWED_HOSTS = ['.bzoop.com','www.bzoop.com','bzoop.com']
+ALLOWED_HOSTS = ['.bzoop.com','www.bzoop.com','bzoop.com',]
 
 
 # Application definition
@@ -94,8 +94,9 @@ MAILCHIMP_API_KEY = "d73d6aab01e805927ad60f1882309b73-us20"
 MAILCHIMP_DATA_CENTER = "us20"
 MAILCHIMP_EMAIL_LIST_ID = "3884f8f9b9"
 
-API_KEY_SEMANTIC_PUBLIC = 'SEM3B18982BA1B811D6E25715F16AC28AAC7'
-API_KEY_SEMANTIC_SECRET = 'NjUyYTA3YTVkZjcyYTc5NjhkYzA5ODIyYWVmNGZlZjE'
+API_KEY_SEMANTIC_PUBLIC = 'SEM3A3D5CD6DB6B3FFFF359B305F4843DF11'
+API_KEY_SEMANTIC_SECRET = 'MWIwZDI5ODFmOTVkNzQ4NmQ1MDM5OWQ1MmMyZGFlYTQ'
+
 
 # STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_mRJizGawnt7xOmULP4GcxArN")
 # STRIPE_PUB_KEY = os.environ.get("STRIPE_PUB_KEY", 'pk_test_eZVMmgfyRaI4Wpk35OgT4Yhr')
@@ -148,10 +149,10 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	}
 }
 
 # import dj_database_url
