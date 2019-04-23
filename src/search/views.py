@@ -12,6 +12,7 @@ class SearchProductView(ListView):
 		context = super(SearchProductView, self).get_context_data(*args, **kwargs)
 		query = self.request.GET.get('q')
 		context['query'] = query
+		print(query)
 		Search.objects.create(query=query,ip_address=get_client_ip(self.request))
 		return context
 
